@@ -1,0 +1,52 @@
+/* Set fonts */
+@font-face {
+    font-family: 'raleway-300';
+    src: url('../fonts/Raleway-300.ttf') format('truetype');
+    font-display:swap
+}
+
+@font-face {
+    font-family: 'raleway-500';
+    src: url('../fonts/Raleway-500.ttf') format('truetype');
+    font-display:swap
+}
+
+body, html {
+    font-family: 'raleway-300'
+}
+
+/* flexbox display to center the game */
+body {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color:#000;
+    color: #fff; /* text color */
+    flex-direction: column; /* helps to center align */
+    overflow: hidden; /* prevent scroll */
+}
+
+/* self-aligns to center, but also add margin to top to vertially align */
+canvas {
+    margin-top: 15vh;
+    align-self: center;
+    flex-basis: auto;
+    border: 5px #002244 solid;
+}
+
+/* absolute position notification */
+.fullPageNotification {
+    display: none;
+    position: fixed;
+    z-index: 1; /* float to top */
+    width: 100%; /* full page overlay */
+    height: 100%; /* full page overlay */
+    background-color: rgba(0, 0, 0, 0.9); /* semi-transparent black */
+}
+  
+.notifbody {
+    background-color: #002244;
+    margin: 17.5% auto;
+    padding: 20px;
+    width: 50%;
+}

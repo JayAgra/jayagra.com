@@ -1,0 +1,148 @@
+:root {
+    --transparent: rgba(0, 0, 0, 0);
+    --accent: #fff;
+    --flair: #68C3E2;
+    --bkg: #024;
+}
+@font-face {
+	font-family: 'raleway-300';
+	src: url('../fonts/Raleway-300.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'raleway-500';
+	src: url('../fonts/Raleway-500.ttf') format('truetype');
+}
+
+html,body {
+	font-family: 'raleway-300';
+}
+
+body {
+	background-color: var(--bkg);
+	color: #fff;
+}
+
+fieldset {
+	border: rgba(0,0,0,0.4);
+	border-width: 0.15rem;
+	border-style: solid;
+	border-radius: 0.5rem;
+	margin-top: 0.25rem;
+	margin-bottom: 0.25rem;
+	background-color: rgba(0,0,0,0.2);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	min-width: 25vw;
+}
+
+h1 {
+	text-align: center;
+	font-family: 'raleway-500';
+}
+
+.container {
+	justify-content: center;
+	display: flex;
+}
+
+select {
+	background-color: var(--transparent);
+	border: none;
+	color: #fff;
+	border-bottom: 2px solid #fff;		
+}
+
+input[type='text'] {
+	border: none;
+	background-color: var(--transparent);
+	color: #fff;
+	border-bottom: 1px solid #fff;
+	width: 95%;
+}
+
+input[type='password'] {
+	border: none;
+	background-color: var(--transparent);
+	color: #fff;
+	border-bottom: 1px solid #fff;
+	width: 95%;
+}
+
+input[type='number'] {
+	border: none;
+	background-color: var(--transparent);
+	color: #fff;
+	border-bottom: 1px solid #fff;
+	width: 95%;
+}
+
+input[type='tel'] {
+	border: none;
+	background-color: var(--transparent);
+	color: #fff;
+	border-bottom: 1px solid #fff;
+	width: 95%;
+}
+
+input[type='number']:focus {
+	background-color: var(--transparent);
+	outline: none;
+	border-bottom: 2px solid var(--accent);
+}
+
+input[type='tel']:focus {
+	background-color: var(--transparent);
+	outline: none;
+	border-bottom: 2px solid var(--accent);
+}
+
+input[type='text']:focus {
+	background-color: var(--transparent);
+	outline: none;
+	border-bottom: 2px solid var(--accent);
+}
+
+input[type='password']:focus {
+	background-color: var(--transparent);
+	outline: none;
+	border-bottom: 2px solid var(--accent);
+}
+
+select:focus {
+	outline: none;
+	border-bottom: 2px solid var(--accent);
+}
+span {
+	color: #fff;
+}
+label {
+	color: #fff;
+}
+.ftitle {
+	color: var(--accent);
+	font-family: 'raleway-500';
+}
+.flair {
+	color: var(--flair);
+}
+input, textarea, select {
+	/*-webkit-appearance: none;*/
+	-webkit-border-radius:0; 
+    border-radius:0;
+}
+.nButton {
+    color: #024; 
+    background-color: var(--flair); 
+    border-radius: 0.25rem; 
+    border-style: solid; 
+    border-color: var(--flair); 
+    border-width: 0.4375rem; 
+    margin-top: 0.5rem;
+}
+textarea {
+    color: #fff;
+    border: 1px solid #024;
+    background-color: #024;
+    border-radius: 5px;
+}

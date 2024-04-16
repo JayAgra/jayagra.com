@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>snek</title>
+    <link rel="stylesheet" href="static/snek/style.css">
+    <script defer src="static/snek/script.min.js"></script>
+</head>
+<body onload="fixCanvas()">
+    <canvas id="snake"></canvas>
+    <div id="lossNotif" class="fullPageNotification">
+        <div class="notifbody">
+          <h1 id="lossMessage">You Lost!</h1>
+          <p>You had <span id="pointsLoss"></span> points, and were alive for <span id="secondsLoss"></span> seconds.</p><br><br>
+          <button onclick="closeLossWindow()" id="playButton">Play Again</button>&emsp;<button onclick="startLv2()" id="playLevel2" disabled>Play Level 2</button>
+        </div>
+    </div>
+    <div id="intro" class="fullPageNotification" style="display: block !important;">
+      <div class="notifbody">
+        <h1 id="lossMessage">snek</h1>
+        <p>Use arrows or WASD to move. Level 1 allows wall collisions, but not level 2.</p><br>
+        <button onclick="closeStartWindow()" id="playButton">Play</button>
+      </div>
+    </div>
+</body>
+</html>

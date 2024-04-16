@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+	<loc>https://jayagra.com/</loc>
+	<lastmod>2024-05-07T09:00:26+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://jayagra.com/minesweeper</loc>
+	<lastmod>2024-05-07T09:00:26+01:00</lastmod>
+</url>
+<url>
+	<loc>https://jayagra.com/snek</loc>
+	<lastmod>2024-05-07T09:00:26+01:00</lastmod>
+</url>
+<url>
+	<loc>https://jayagra.com/2048</loc>
+	<lastmod>2024-05-07T09:00:26+01:00</lastmod>
+</url>
+<url>
+	<loc>https://jayagra.com/2048/8</loc>
+	<lastmod>2024-05-07T09:00:26+01:00</lastmod>
+</url>
+<url>
+	<loc>https://jayagra.com/base64</loc>
+	<lastmod>2024-05-07T09:00:26+01:00</lastmod>
+</url>
+</urlset>

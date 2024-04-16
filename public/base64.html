@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <title>Tools - Base64</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2">
+    <link rel="stylesheet" href="static/base64/float.css">
+    <meta name="msapplication-TileColor" content="#002244">
+    <meta name="theme-color" content="#002244">
+  </head>
+  <body class="text-center">
+    <div class="container">
+        <div id="flexObject">
+            <h1 style="font-family: 'raleway-300'"><span class="ftitle">Base64 Tools</span></h1><br><br>
+        <fieldset>
+            <h3 class="flair">Credential Encoder</h3>
+            <input type="text" name="username" id="username" placeholder="username"><input type="text" name="password" id="password" placeholder="password"><br>
+            <br><button onclick="encodeCred()" type="button" class="nButton">Encode</button>
+            <p>Output:</p><textarea type="text" id="output" placeholder="Output" readonly></textarea><br>
+            <button onclick="copyCred()" type="button" id="copyb64CredButton" class="nButton">Copy</button>
+        </fieldset><br>
+        <fieldset>
+            <h3 class="flair">Image to Base64 URL</h3>
+            <input type="file" accept="image/*" style="text-align: center" class="imageUpload" id="imageUpload"/><br>
+            <br><button onclick="convertImage()" type="button" class="nButton">Encode</button>
+            <p>Output:</p><textarea name="outputBase64URL" id="outputBase64URL" readonly></textarea><br>
+            <button onclick="copyImageURL()" type="button" id="copyURLButton" class="nButton">Copy</button>
+        </fieldset><br>
+        <fieldset>
+            <h3 class="flair">String to Base64</h3>
+            <textarea name="base64strR" id="base64strR" placeholder="String"></textarea><br>
+            <br><button onclick="convertTextR()" type="button" class="nButton">Encode</button>
+            <p>Output:</p><textarea name="outputBase64R" id="outputBase64R" readonly></textarea>
+        </fieldset><br>
+        <fieldset>
+            <h3 class="flair">Base64 to String</h3>
+            <textarea name="base64str" id="base64str" placeholder="base64"></textarea><br>
+            <br><button onclick="convertText()" type="button" class="nButton">Encode</button>
+            <p>Output:</p><textarea name="outputBase64" id="outputBase64" readonly></textarea>
+        </fieldset>
+        <br><br></div>
+    </div>
+    <script>
+        function encodeCred() {
+            var usernameText = document.getElementById('username').value;
+            var passwordText = document.getElementById('password').value;
+            document.getElementById('output').style.display = "block";
+            document.getElementById('copyb64CredButton').style.display = "block";
+            document.getElementById('output').value = btoa(usernameText + ":" + passwordText)
+        }
+        function copyCred() {
+            const dataToCopy = document.getElementById('output').value;
+            const copyButton = document.getElementById('copyb64CredButton');
+            navigator.clipboard.writeText(dataToCopy).then(
+                () => {
+                    copyb64CredButton.innerHTML = "Copied!";
+                },
+                () => {
+                    copyb64CredButton.innerHTML = "Copy Failed!";
+                }
+            )
+        }
+        function convertText() {
+            var inputText = document.getElementById('base64str').value;
+            document.getElementById('outputBase64').textContent = atob(inputText)
+        }
+        function convertTextR() {
+            var inputText = document.getElementById('base64strR').value;
+            document.getElementById('outputBase64R').textContent = btoa(inputText)
+        }
+        function convertImage() {
+        const fileInput = document.getElementById('imageUpload');
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const base64String = reader.result
+                document.getElementById('outputBase64URL').textContent = base64String;
+            };
+            console.log(reader.readAsDataURL(file))
+        }
+        function copyImageURL() {
+            const urlToCopy = document.getElementById('outputBase64URL').textContent;
+            const copyButton = document.getElementById('copyURLButton');
+            navigator.clipboard.writeText(urlToCopy).then(
+                () => {
+                    copyURLButton.innerHTML = "Copied!";
+                },
+                () => {
+                    copyURLButton.innerHTML = "Copy Failed!";
+                }
+            )
+        }
+    </script>
+  </body>
+</html>
