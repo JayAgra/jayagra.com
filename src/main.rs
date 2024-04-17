@@ -2,11 +2,7 @@ use actix_governor::{Governor, GovernorConfigBuilder};
 use actix_web::{middleware::{self, DefaultHeaders}, web, App, HttpServer};
 use actix_web_static_files;
 use dotenv::dotenv;
-use openssl::{
-    ssl::{SslAcceptor, SslFiletype, SslMethod},
-    x509::X509,
-};
-use reqwest;
+use openssl::ssl::{SslAcceptor, SslFiletype, SslMethod};
 use std::{env, io};
 
 mod static_files;
@@ -17,14 +13,6 @@ include!(concat!(env!("OUT_DIR"), "/generated.rs"));
 async fn main() -> io::Result<()> {
     // load environment variables from .env file
     dotenv().ok();
-
-    // don't log all that shit when in release mode
-    if cfg!(debug_assertions) {
-        env_logger::init_from_env(env_logger::Env::new().default_filter_or("info"));
-    } else {
-        env_logger::init_from_env(env_logger::Env::new().default_filter_or("error"));
-        println!("[OK] starting in release mode");
-    }
 
     // ratelimiting with governor
     let governor_conf = GovernorConfigBuilder::default()
@@ -42,10 +30,6 @@ async fn main() -> io::Result<()> {
     let mut builder = SslAcceptor::mozilla_intermediate(SslMethod::tls()).unwrap();
     builder.set_private_key_file("./ssl/key.pem", SslFiletype::PEM).unwrap();
     builder.set_certificate_chain_file("./ssl/cert.pem").unwrap();
-    let intermediate_cert_url = "https://letsencrypt.org/certs/lets-encrypt-r3.der";
-    let intermediate_bytes = reqwest::blocking::get(intermediate_cert_url).unwrap().bytes().unwrap();
-    let intermediate_cert = X509::from_der(&intermediate_bytes).unwrap();
-    builder.add_extra_chain_cert(intermediate_cert).unwrap();
 
     // config done. now, create the new HttpServer
     log::info!("[OK] starting jayagra.com on port 443 and 80");
@@ -63,7 +47,6 @@ async fn main() -> io::Result<()> {
             .wrap(
                 DefaultHeaders::new()
                     .add(("Cache-Control", "public, max-age=23328000"))
-                    .add(("X-bearTracks", "5.2.0")),
             )
             // html
             .route("/", web::get().to(static_files::static_index))
