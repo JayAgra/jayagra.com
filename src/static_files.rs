@@ -25,21 +25,21 @@ const FAVICON_16: &[u8] = include_bytes!("../public/favicon-16x16.png");
 const FAVICON_32: &[u8] = include_bytes!("../public/favicon-32x32.png");
 const FAVICON_ICO: &[u8] = include_bytes!("../public/favicon.ico");
 
-pub async fn static_index(req: HttpRequest) -> HttpResponse {
+pub async fn static_index(/*req: HttpRequest*/) -> HttpResponse {
     // redirect requests not to port 443 (port 80) to 443
-    match req.app_config().local_addr().port() {
-        443 => {
+    /*match req.app_config().local_addr().port() {
+        443 => {*/
             HttpResponse::Ok()
                 .content_type(ContentType::html())
                 .insert_header(CacheControl(vec![CacheDirective::Public, CacheDirective::MaxAge(23328000u32)]))
                 .body(INDEX_HTML)
-        }
+        /*}
         _ => {
             HttpResponse::PermanentRedirect()
                 .append_header(("location", format!("https://{}", env::var("HOSTNAME").unwrap_or_else(|_| "localhost".to_string()))))
                 .finish()
         }
-    }
+    } */
 }
 
 pub async fn static_minesweeper() -> HttpResponse {
