@@ -32,3 +32,6 @@ sysinfo = "0.16.4"
 
 [build-dependencies]
 static-files = "0.2.1"
+
+[profile.release]
+codegen-units = 1
