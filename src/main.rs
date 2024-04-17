@@ -1,6 +1,6 @@
 use actix_governor::{Governor, GovernorConfigBuilder};
-use actix_web::{ middleware::{self, DefaultHeaders}, web, App, HttpServer };
-use actix_web_static_files::ResourceFiles;
+use actix_web::{middleware::{self, DefaultHeaders}, web, App, HttpServer};
+use actix_web_static_files;
 use dotenv::dotenv;
 use openssl::{
     ssl::{SslAcceptor, SslFiletype, SslMethod},
@@ -50,9 +50,10 @@ async fn main() -> io::Result<()> {
     // config done. now, create the new HttpServer
     log::info!("[OK] starting jayagra.com on port 443 and 80");
 
-        HttpServer::new(move || {
+    HttpServer::new(move || {
         // generated resources from actix_web_files
         let generated = generate();
+        // other static directories
         App::new()
             // use governor ratelimiting as middleware
             .wrap(Governor::new(&governor_conf))
@@ -85,11 +86,11 @@ async fn main() -> io::Result<()> {
             .route("/favicon-32x32.png", web::get().to(static_files::static_favicon_32))
             .route("/favicon.ico", web::get().to(static_files::static_favicon))
             // public/static
-            .service(ResourceFiles::new("/static", generated))
-        })
-        .bind_openssl(format!("{}:443", env::var("HOSTNAME").unwrap_or_else(|_| "localhost".to_string())), builder)?
-        .bind((env::var("HOSTNAME").unwrap_or_else(|_| "localhost".to_string()), 80))?
-        .workers(8)
-        .run()
-        .await
+            .service(actix_web_static_files::ResourceFiles::new("/static", generated))
+    })
+    .bind_openssl(format!("{}:443", env::var("HOSTNAME").unwrap_or_else(|_| "localhost".to_string())), builder)?
+    .bind((env::var("HOSTNAME").unwrap_or_else(|_| "localhost".to_string()), 80))?
+    .workers(8)
+    .run()
+    .await
 }
