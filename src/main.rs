@@ -11,8 +11,7 @@ mod static_files;
 include!(concat!(env!("OUT_DIR"), "/generated.rs"));
 
 async fn static_ish(req: HttpRequest) -> Result<NamedFile> {
-    let mut path: PathBuf = "./public/static-ish/".parse::<PathBuf>().unwrap();
-    path.push(req.match_info().query("filename").parse::<PathBuf>().unwrap());
+    let path: PathBuf = ("static-ish/".to_owned() + req.match_info().query("filename")).parse::<PathBuf>().unwrap();
     Ok(NamedFile::open(path)?)
 }
 
