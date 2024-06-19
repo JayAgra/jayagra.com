@@ -76,7 +76,7 @@ async fn main() -> io::Result<()> {
             // public/static
             .service(actix_web_static_files::ResourceFiles::new("/static", generated))
             // other shit
-            .route("/static-ish/{filename:.*}", web::get().to(static_ish))
+            .route("/static-ish/{filename}", web::get().to(static_ish))
     })
     .bind_openssl(format!("{}:443", env::var("HOSTNAME").unwrap_or_else(|_| "localhost".to_string())), builder)?
     .bind((env::var("HOSTNAME").unwrap_or_else(|_| "localhost".to_string()), 80))?
