@@ -1,13 +1,20 @@
+use actix_files::NamedFile;
 use actix_governor::{Governor, GovernorConfigBuilder};
-use actix_web::{middleware::{self, DefaultHeaders}, web, App, HttpServer};
+use actix_web::{middleware::{self, DefaultHeaders}, web, App, HttpServer, HttpRequest, Result};
 use actix_web_static_files;
 use dotenv::dotenv;
 use openssl::ssl::{SslAcceptor, SslFiletype, SslMethod};
-use std::{env, io};
+use std::{env, io, path::PathBuf};
 
 mod static_files;
 
 include!(concat!(env!("OUT_DIR"), "/generated.rs"));
+
+async fn static_ish(req: HttpRequest) -> Result<NamedFile> {
+    let mut path: PathBuf = "./public/static-ish/".parse::<PathBuf>().unwrap();
+    path.push(req.match_info().query("filename").parse::<PathBuf>().unwrap());
+    Ok(NamedFile::open(path)?)
+}
 
 #[actix_web::main]
 async fn main() -> io::Result<()> {
@@ -69,6 +76,8 @@ async fn main() -> io::Result<()> {
             .route("/favicon.ico", web::get().to(static_files::static_favicon))
             // public/static
             .service(actix_web_static_files::ResourceFiles::new("/static", generated))
+            // other shit
+            .route("/static-ish/{filename:.*}", web::get().to(static_ish))
     })
     .bind_openssl(format!("{}:443", env::var("HOSTNAME").unwrap_or_else(|_| "localhost".to_string())), builder)?
     .bind((env::var("HOSTNAME").unwrap_or_else(|_| "localhost".to_string()), 80))?

@@ -1,8 +1,8 @@
 use actix_web::{
     http::header::{CacheControl, CacheDirective, ContentType},
-    HttpRequest, HttpResponse,
+    HttpResponse,
 };
-use std::{env, include_bytes, include_str};
+use std::{include_bytes, include_str};
 
 const INDEX_HTML: &str = include_str!("../public/index.html");
 const MINESWEEPER_HTML: &str = include_str!("../public/minesweeper.html");
