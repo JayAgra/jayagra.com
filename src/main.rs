@@ -79,7 +79,7 @@ async fn main() -> io::Result<()> {
             .route("/static-ish/{filename}", web::get().to(static_ish))
     })
     // .bind_openssl(format!("{}:443", env::var("HOSTNAME").unwrap_or_else(|_| "localhost".to_string())), builder)?
-    .bind((env::var("HOSTNAME").unwrap_or_else(|_| "localhost".to_string()), 8080))?
+    .bind("0.0.0.0:8080")?
     .workers(8)
     .run()
     .await

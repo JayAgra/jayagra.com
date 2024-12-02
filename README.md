@@ -2,11 +2,16 @@
 
 use caddy
 ```sh
-sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https curl
-curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
-curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
-sudo apt update
+# install
 sudo apt install caddy
+# config
+sudo nano /etc/caddy/Caddyfile
+# status
+systemctl status caddy
+# reload new config
+sudo systemctl reload caddy
+# stop
+sudo systemctl stop caddy
 ```
 
 caddy file loc:<br>
