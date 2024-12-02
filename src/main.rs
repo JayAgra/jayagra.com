@@ -3,7 +3,7 @@ use actix_governor::{Governor, GovernorConfigBuilder};
 use actix_web::{middleware::{self, DefaultHeaders}, web, App, HttpServer, HttpRequest, Result};
 use actix_web_static_files;
 use dotenv::dotenv;
-use openssl::ssl::{SslAcceptor, SslFiletype, SslMethod};
+// use openssl::ssl::{SslAcceptor, SslFiletype, SslMethod};
 use std::{env, io, path::PathBuf};
 
 mod static_files;
@@ -33,12 +33,12 @@ async fn main() -> io::Result<()> {
      *  openssl req -x509 -newkey rsa:4096 -nodes -keyout ./ssl/key.pem -out ./ssl/cert.pem -days 365 -subj '/CN=localhost'
      */
     // create ssl builder for tls config
-    let mut builder = SslAcceptor::mozilla_intermediate(SslMethod::tls()).unwrap();
-    builder.set_private_key_file("./ssl/key.pem", SslFiletype::PEM).unwrap();
-    builder.set_certificate_chain_file("./ssl/cert.pem").unwrap();
+    // let mut builder = SslAcceptor::mozilla_intermediate(SslMethod::tls()).unwrap();
+    // builder.set_private_key_file("./ssl/key.pem", SslFiletype::PEM).unwrap();
+    // builder.set_certificate_chain_file("./ssl/cert.pem").unwrap();
 
     // config done. now, create the new HttpServer
-    log::info!("[OK] starting jayagra.com on port 443 and 80");
+    log::info!("[OK] starting jayagra.com on port 8080");
 
     HttpServer::new(move || {
         // generated resources from actix_web_files
@@ -78,8 +78,8 @@ async fn main() -> io::Result<()> {
             // other shit
             .route("/static-ish/{filename}", web::get().to(static_ish))
     })
-    .bind_openssl(format!("{}:443", env::var("HOSTNAME").unwrap_or_else(|_| "localhost".to_string())), builder)?
-    .bind((env::var("HOSTNAME").unwrap_or_else(|_| "localhost".to_string()), 80))?
+    // .bind_openssl(format!("{}:443", env::var("HOSTNAME").unwrap_or_else(|_| "localhost".to_string())), builder)?
+    .bind((env::var("HOSTNAME").unwrap_or_else(|_| "localhost".to_string()), 8080))?
     .workers(8)
     .run()
     .await
