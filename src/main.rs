@@ -7,6 +7,7 @@ use dotenv::dotenv;
 use std::{env, io, path::PathBuf};
 
 mod static_files;
+mod gc;
 
 include!(concat!(env!("OUT_DIR"), "/generated.rs"));
 
