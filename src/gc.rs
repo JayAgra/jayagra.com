@@ -3,8 +3,8 @@
 use std::f64::consts::PI;
 
 pub struct Coordinate {
-    latitude: f64,
-    longitude: f64
+    pub latitude: f64,
+    pub longitude: f64
 }
 
 impl Coordinate {
@@ -13,7 +13,7 @@ impl Coordinate {
         self.longitude = (self.longitude * PI) / 180.0;
     }
 
-    fn vincenty(self, coordinate: Coordinate) -> (f64, f64, f64) {
+    pub fn vincenty(self, coordinate: Coordinate) -> (f64, f64, f64) {
         vincenty([self, coordinate])
     }
 }
