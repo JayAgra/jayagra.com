@@ -13,6 +13,7 @@ const BASE64_HTML: &str = include_str!("../public/base64.html");
 const APP_SUPPORT_HTML: &str = include_str!("../public/support.html");
 const PRIVACY_HTML: &str = include_str!("../public/privacy.html");
 const COOKIES_HTML: &str = include_str!("../public/cookies.html");
+const SCOUTING_HTML: &str = include_str!("../public/scouting.html");
 const WORDLE_JS: &str = include_str!("../public/wordle.min.js");
 const SITEMAP_XML: &str = include_str!("../public/sitemap.xml");
 const SITE_WEBMANI: &str = include_str!("../public/site.webmanifest");
@@ -71,6 +72,10 @@ pub async fn static_privacy() -> HttpResponse {
 
 pub async fn static_cookies() -> HttpResponse {
     HttpResponse::Ok().content_type(ContentType::html()).body(COOKIES_HTML)
+}
+
+pub async fn static_scouting() -> HttpResponse {
+    HttpResponse::Ok().content_type(ContentType::html()).body(SCOUTING_HTML)
 }
 
 pub async fn static_wordle_js() -> HttpResponse {
