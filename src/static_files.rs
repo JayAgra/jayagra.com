@@ -10,6 +10,7 @@ const SNEK_HTML: &str = include_str!("../public/snek.html");
 const TWENTY48_HTML: &str = include_str!("../public/2048.html");
 const TWENTY48_8_HTML: &str = include_str!("../public/2048_8.html");
 const BASE64_HTML: &str = include_str!("../public/base64.html");
+const ENVIRONMENT_CYCLES_HTML: &str = include_str!("../public/ec.html");
 const APP_SUPPORT_HTML: &str = include_str!("../public/support.html");
 const PRIVACY_HTML: &str = include_str!("../public/privacy.html");
 const COOKIES_HTML: &str = include_str!("../public/cookies.html");
@@ -60,6 +61,10 @@ pub async fn static_2048_8() -> HttpResponse {
 
 pub async fn static_base64() -> HttpResponse {
     HttpResponse::Ok().content_type(ContentType::html()).body(BASE64_HTML)
+}
+
+pub async fn static_environmental_cycles() -> HttpResponse {
+    HttpResponse::Ok().content_type(ContentType::html()).body(ENVIRONMENT_CYCLES_HTML)
 }
 
 pub async fn static_support() -> HttpResponse {

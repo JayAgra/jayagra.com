@@ -62,6 +62,7 @@ async fn main() -> io::Result<()> {
             .route("/2048", web::get().to(static_files::static_2048))
             .route("/2048_8", web::get().to(static_files::static_2048_8))
             .route("/base64", web::get().to(static_files::static_base64))
+            .route("/ec", web::get().to(static_files::static_environmental_cycles))
             .route("/scouting{args}}*", web::get().to(static_files::static_scouting))
             .route("/support{args}*", web::get().to(static_files::static_support))
             .route("/legal/privacy{args}*", web::get().to(static_files::static_privacy))
