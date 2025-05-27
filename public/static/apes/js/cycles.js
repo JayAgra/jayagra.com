@@ -62,11 +62,66 @@ const CYCLES = [
     },
     {
         title: "Nitrogen",
-        base_image: "",
-        layer_images: [""],
+        base_image: "./static/apes/src/n/bkg.jpg",
+        layer_images: [
+            "./static/apes/src/n/0000.png",
+            "./static/apes/src/n/0001.png",
+            "./static/apes/src/n/0002.png",
+            "./static/apes/src/n/0003.png",
+            "./static/apes/src/n/0004.png",
+            "./static/apes/src/n/0005.png",
+            "./static/apes/src/n/0006.png",
+            "./static/apes/src/n/0007.png",
+            "./static/apes/src/n/0008.png",
+        ],
         steps: [
             {
-                title: "",
+                title: "All",
+                brief: "",
+                html: "",
+            },
+            {
+                title: "(1)",
+                brief: "",
+                html: "",
+            },
+            {
+                title: "(2)",
+                brief: "",
+                html: "",
+            },
+            {
+                title: "(3)",
+                brief: "",
+                html: "",
+            },
+            {
+                title: "(4)",
+                brief: "",
+                html: "",
+            },
+            {
+                title: "(5)",
+                brief: "",
+                html: "",
+            },
+            {
+                title: "(6)",
+                brief: "",
+                html: "",
+            },
+            {
+                title: "(7)",
+                brief: "",
+                html: "",
+            },
+            {
+                title: "(8)",
+                brief: "",
+                html: "",
+            },
+            {
+                title: "(9)",
                 brief: "",
                 html: "",
             },
