@@ -70,9 +70,57 @@ const CYCLES = [
             "./static/apes/src/n/0003.png",
             "./static/apes/src/n/0004.png",
             "./static/apes/src/n/0005.png",
-            "./static/apes/src/n/0006.png",
-            "./static/apes/src/n/0007.png",
-            "./static/apes/src/n/0008.png",
+        ],
+        steps: [
+            {
+                title: "All",
+                brief: "",
+                html: "",
+            },
+            {
+                title: "(1)",
+                brief: "",
+                html: "",
+            },
+            {
+                title: "(2)",
+                brief: "",
+                html: "",
+            },
+            {
+                title: "(3)",
+                brief: "",
+                html: "",
+            },
+            {
+                title: "(4)",
+                brief: "",
+                html: "",
+            },
+            {
+                title: "(5)",
+                brief: "",
+                html: "",
+            },
+            {
+                title: "(6)",
+                brief: "",
+                html: "",
+            }
+        ],
+    },
+    {
+        title: "Phosphorous",
+        base_image: "./static/apes/src/p/bkg.png",
+        layer_images: [
+            "./static/apes/src/p/0000.png",
+            "./static/apes/src/p/0001.png",
+            "./static/apes/src/p/0002.png",
+            "./static/apes/src/p/0003.png",
+            "./static/apes/src/p/0004.png",
+            "./static/apes/src/p/0005.png",
+            "./static/apes/src/p/0006.png",
+            "./static/apes/src/p/0007.png",
         ],
         steps: [
             {
@@ -117,23 +165,6 @@ const CYCLES = [
             },
             {
                 title: "(8)",
-                brief: "",
-                html: "",
-            },
-            {
-                title: "(9)",
-                brief: "",
-                html: "",
-            },
-        ],
-    },
-    {
-        title: "Phosphorous",
-        base_image: "",
-        layer_images: [""],
-        steps: [
-            {
-                title: "",
                 brief: "",
                 html: "",
             },
