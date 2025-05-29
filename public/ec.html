@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <meta name="msapplication-TileColor" content="#000">
         <meta name="theme-color" content="#000">
-        <link rel="stylesheet" href="./static/apes/css/index.css?v=1003">
+        <link rel="stylesheet" href="./static/apes/css/index.min.css?v=1005">
     </head>
     <body>
         <div class="main">
@@ -24,28 +24,29 @@
                     </div>
                 </div>
             </div>
-            <div class="content centerFlex">
+            <div class="content centerFlex" id="mainScreen">
                 <div class="imageContainer centerFlex">
                     <div class="imageLayers fullWidthHeight"></div>
                 </div>
                 <div class="stepsContainer centerFlex">
                     <h2 class="mobileHidden">Steps</h2>
-                    <div class="steps">
-                        <div class="stepCard">
-                            <h2>steps</h2>
-                        </div>
-                    </div>
+                    <div class="steps"></div>
                 </div>
                 <div class="descriptionContainer centerFlex">
-                    <h2 class="mobileHidden">Carbon Cycle</h2>
+                    <h2 class="mobileHidden"></h2>
                     <div class="description">
-                        <h3 class="mobileMarginAdd">Step Name</h3>
+                        <h3 class="mobileMarginAdd"></h3>
                     </div>
                 </div>
             </div>
+            <div class="content centerFlex hidden" id="loadingScreen">
+                <div class="centerFlex" style="width: 100vw; height: 90vh;">
+                    <h2 style="text-align: center; width: 100vw;">Loading Content...</h2>
+                </div>
+            </div>
         </div>
-        <script src="./static/apes/js/tooltips.js?v=1003"></script>
-        <script src="./static/apes/js/cycles.js?v=1003"></script>
-        <script src="./static/apes/js/index.js?v=1003"></script>
+        <script src="./static/apes/js/tooltips.js?v=1006"></script>
+        <script src="./static/apes/js/cycles.js?v=1006"></script>
+        <script src="./static/apes/js/index.js?v=1006"></script>
     </body>
 </html>

@@ -123,6 +123,10 @@ span.subtle {
     color: var(--accentColor);
 }
 
+.hidden {
+    display: none !important;
+}
+
 @media (min-width: 1000px) {
     body {
         overflow: hidden;
@@ -137,15 +141,17 @@ span.subtle {
 
     .imageContainer {
         width: 38vw;
-        height: calc(100vh - 5rem);
+        height: calc(100vh - 6rem);
         justify-content: center;
         flex-direction: column;
         margin: 0 0.5em;
+        position: relative;
+        bottom: 0.35rem;
     }
 
     .imageSub {
         width: 37vw;
-        height: calc(100vh - 7rem);
+        height: calc(100vh - 8rem);
     }
 
     .imageLayers {
@@ -216,11 +222,13 @@ span.subtle {
 
     .tooltip::before {
         content: "";
-        top: 100%;
-        width: 2em !important;
-        height: 2em !important;
-        border-radius: 50%;
-        background-color: transparent !important;
+        top: 150%;
+        width: 1em !important;
+        height: 1em !important;
+        border-radius: 0%;
+        rotate: 45deg;
+        background-color: #ffffffcc;
+        z-index: 99;
     }
 
     .tooltip::after {
@@ -229,23 +237,21 @@ span.subtle {
         padding: 0.5em;
         border-radius: 5px;
         max-width: 20vw;
+        background-color: #ffffffbb;
+        z-index: 100;
     }
 
     .tooltip::before, .tooltip::after {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        background-color: #00000088;
-        filter: drop-shadow(0.1em 0.3em 0.4em var(--tertiary));
-        -webkit-backdrop-filter: drop-shadow(0.1em 0.3em 0.4em var(--tertiary));
         backdrop-filter: blur(0.75em);
         -webkit-backdrop-filter: blur(0.75em);
         opacity: 0;
         pointer-events: none;
-        transition: opacity 0.2s ease-in-out;
+        transition: opacity 0s linear;
         width: max-content;
-        z-index: 100;
-        color: #fff;
+        color: #000;
     }
 
     .tooltip:hover::before, .tooltip:hover::after {

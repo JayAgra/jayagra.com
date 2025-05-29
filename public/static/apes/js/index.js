@@ -16,6 +16,8 @@ navLinks.forEach((element, index) => {
 
 document.loadContent = (index) => {
     console.log("Loading content with index " + index)
+    document.getElementById("mainScreen").classList.add("hidden");
+    document.getElementById("loadingScreen").classList.remove("hidden");
     // set new title
     document.querySelector(".descriptionContainer h2").textContent = CYCLES[index].title;
     // remove existing steps
@@ -35,22 +37,33 @@ document.loadContent = (index) => {
         stepCard.appendChild(brief);
         stepsContainer.appendChild(stepCard);
     });
+    var copyrightDiv = document.createElement("div");
+    copyrightDiv.className = "stepCard";
+    copyrightDiv.style = "background: transparent !important; border: transparent !important;";
+    copyrightDiv.classList.add("mobileHidden");
+    var copyright = document.createElement("small");
+    copyright.innerHTML = "Copyright © 2025 Jayen Agrawal. All Rights Reserved.<br><br>Licensed Content:<br>" + "Diagram Copyright © 2025 " + CYCLES[index].copyright + "<br>Descriptions Copyright © 2025 Milo Kroh.<br><br>"
+    copyrightDiv.appendChild(copyright);
+    stepsContainer.appendChild(copyrightDiv);
     var imageStack = document.getElementsByClassName("imageLayers")[0];
     while (imageStack.firstChild) {
         imageStack.removeChild(imageStack.firstChild);
     }
+    var imagesToLoad = CYCLES[index].layer_images.length + 1;
     [CYCLES[index].base_image].concat(CYCLES[index].layer_images).forEach((item, imageIndex) => {
         var imageLayer = document.createElement("img");
         imageLayer.src = item;
         imageLayer.alt = imageIndex;
         imageLayer.classList.add("fullWidthHeight");
+        imageLayer.onload = () => { imagesToLoad--; if (imagesToLoad == 0) { document.selectStep(index, 0); } };
+        imageLayer.onerror = () => { imagesToLoad--; if (imagesToLoad == 0) { document.selectStep(index, 0); } };
         imageStack.appendChild(imageLayer);
     });
-    document.selectStep(index, 0);
 };
 
 document.selectStep = (cycle, step) => {
     var steps = Array.from(document.getElementsByClassName("steps")[0].children);
+    steps.pop();
     steps.forEach((item) => {
         item.classList.remove("selectedItem");
     });
@@ -68,4 +81,8 @@ document.selectStep = (cycle, step) => {
     });
     images[0].style.opacity = "0.5"
     images[step].style.opacity = "1"
+    if (step == 0) {
+        document.getElementById("loadingScreen").classList.add("hidden");
+        document.getElementById("mainScreen").classList.remove("hidden");
+    }
 }

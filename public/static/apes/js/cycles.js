@@ -1,6 +1,7 @@
 const CYCLES = [
     {
         title: "Carbon",
+        copyright: "Mira Tian",
         base_image: "./static/apes/src/c/bkg.png",
         layer_images: [
             "./static/apes/src/c/0000.png",
@@ -50,11 +51,49 @@ const CYCLES = [
     },
     {
         title: "Water",
-        base_image: "",
-        layer_images: [""],
+        copyright: "Leviathan Padwick",
+        base_image: "./static/apes/src/h/bkg.png",
+        layer_images: [
+            "./static/apes/src/h/0000.png",
+            "./static/apes/src/h/0001.png",
+            "./static/apes/src/h/0002.png",
+            "./static/apes/src/h/0003.png",
+            "./static/apes/src/h/0004.png",
+            "./static/apes/src/h/0005.png",
+        ],
         steps: [
             {
-                title: "",
+                title: "All",
+                brief: "",
+                html: "",
+            },
+            {
+                title: "(1)",
+                brief: "",
+                html: "",
+            },
+            {
+                title: "(2)",
+                brief: "",
+                html: "",
+            },
+            {
+                title: "(3)",
+                brief: "",
+                html: "",
+            },
+            {
+                title: "(4)",
+                brief: "",
+                html: "",
+            },
+            {
+                title: "(5)",
+                brief: "",
+                html: "",
+            },
+            {
+                title: "(6)",
                 brief: "",
                 html: "",
             },
@@ -62,6 +101,7 @@ const CYCLES = [
     },
     {
         title: "Nitrogen",
+        copyright: "Leviathan Padwick",
         base_image: "./static/apes/src/n/bkg.jpg",
         layer_images: [
             "./static/apes/src/n/0000.png",
@@ -106,21 +146,18 @@ const CYCLES = [
                 title: "(6)",
                 brief: "",
                 html: "",
-            }
+            },
         ],
     },
     {
         title: "Phosphorous",
+        copyright: "Mira Tian",
         base_image: "./static/apes/src/p/bkg.png",
         layer_images: [
             "./static/apes/src/p/0000.png",
             "./static/apes/src/p/0001.png",
             "./static/apes/src/p/0002.png",
             "./static/apes/src/p/0003.png",
-            "./static/apes/src/p/0004.png",
-            "./static/apes/src/p/0005.png",
-            "./static/apes/src/p/0006.png",
-            "./static/apes/src/p/0007.png",
         ],
         steps: [
             {
@@ -145,26 +182,6 @@ const CYCLES = [
             },
             {
                 title: "(4)",
-                brief: "",
-                html: "",
-            },
-            {
-                title: "(5)",
-                brief: "",
-                html: "",
-            },
-            {
-                title: "(6)",
-                brief: "",
-                html: "",
-            },
-            {
-                title: "(7)",
-                brief: "",
-                html: "",
-            },
-            {
-                title: "(8)",
                 brief: "",
                 html: "",
             },
