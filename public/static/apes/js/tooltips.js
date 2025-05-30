@@ -9,6 +9,7 @@ const TOOLTIPS = {
     leaching: "water dissolves and carries double materials from soil's top layer, and mining, the phosphorus then reaches the soil",
     "haber-bosch process": "An industrial process that synthesizes ammonia from nitrogen and hydrogen",
     "higher plants": "Plants that have vein tissue and can be planted like trees and ferns",
+    guano: "organic solid waste from seabirds",
 };
 
 document.activateTooltips = () => {

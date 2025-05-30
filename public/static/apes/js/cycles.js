@@ -173,12 +173,12 @@ const CYCLES = [
             {
                 title: "Release",
                 brief: "There are multiple ways that phosphorus can be released.",
-                html: '<p>Much of the phosphorus is in rock and sedimentary deposits, which is released by weathering, leaching <span class="tooltip">leaching</span>.</p>',
+                html: '<p>Much of the phosphorus is in rock and sedimentary deposits, which is released by weathering, <span class="tooltip">leaching</span>.</p>',
             },
             {
                 title: "On the Surface",
                 brief: "Phosphorus in the land",
-                html: '<p>The phosphorus is brought back to land from fish harvests and collection of <span class="tooltip">guano</span> - organic solid waste from seabirds. Primary consumers take up the phosphate in the soil and turn it into organic compounds necessary for survival and growth. The phosphorus is then always circling through the food chain as it is transferred from one organism to another when they each other. When organisms die, they release the stored phosphorus in their bodies to be recycled and used again. The phosphorus is returned to the soil through excretion and through decomposition. Due to steady division of phosphorus into the ocean, it must be added into fertilizers to maintain fertility and agricultural productivity. Resources that naturally have phosphorus in them can also act as natural fertilizers.</p>',
+                html: '<p>The phosphorus is brought back to land from fish harvests and collection of <span class="tooltip">guano</span>. Primary consumers take up the phosphate in the soil and turn it into organic compounds necessary for survival and growth. The phosphorus is then always circling through the food chain as it is transferred from one organism to another when they each other. When organisms die, they release the stored phosphorus in their bodies to be recycled and used again. The phosphorus is returned to the soil through excretion and through decomposition. Due to steady division of phosphorus into the ocean, it must be added into fertilizers to maintain fertility and agricultural productivity. Resources that naturally have phosphorus in them can also act as natural fertilizers.</p>',
             },
             {
                 title: "The Ocean",
