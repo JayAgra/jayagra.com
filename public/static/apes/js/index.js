@@ -1,7 +1,9 @@
+const V = "1008";
+
 var navLinks = Array.from(document.querySelectorAll(".navLinks button"));
 
 document.body.onload = () => {
-    document.loadContent(0)
+    document.loadContent(0);
 }
 
 navLinks.forEach((element, index) => {
@@ -10,7 +12,7 @@ navLinks.forEach((element, index) => {
             element.classList.remove("navLinkButtonSelected");
         });
         navLinks[index].classList.add("navLinkButtonSelected");
-        document.loadContent(index)
+        document.loadContent(index);
     });
 });
 
@@ -42,7 +44,7 @@ document.loadContent = (index) => {
     copyrightDiv.style = "background: transparent !important; border: transparent !important;";
     copyrightDiv.classList.add("mobileHidden");
     var copyright = document.createElement("small");
-    copyright.innerHTML = "Copyright © 2025 Jayen Agrawal. All Rights Reserved.<br><br>Licensed Content:<br>" + "Diagram Copyright © 2025 " + CYCLES[index].copyright + "<br>Descriptions Copyright © 2025 Milo Kroh.<br><br>"
+    copyright.innerHTML = "<details><summary>Copyright © 2025 Jayen Agrawal. All Rights Reserved. Click for details.</summary><p style=\"padding-left: 0.5em\"><br>Licensed Content:<br>" + "Diagram Copyright © 2025 " + CYCLES[index].copyright + "<br>Descriptions Copyright © 2025 Milo Kroh.<br><br>Contact <a href=\"mailto:jay@jayagra.com\">jay@jayagra.com</a> for inquiries and bug reports.<br><br>v" + V + "<br>" + navigator.userAgent + "</p></details><br>"
     copyrightDiv.appendChild(copyright);
     stepsContainer.appendChild(copyrightDiv);
     var imageStack = document.getElementsByClassName("imageLayers")[0];
@@ -52,7 +54,7 @@ document.loadContent = (index) => {
     var imagesToLoad = CYCLES[index].layer_images.length + 1;
     [CYCLES[index].base_image].concat(CYCLES[index].layer_images).forEach((item, imageIndex) => {
         var imageLayer = document.createElement("img");
-        imageLayer.src = item;
+        imageLayer.src = item + "?v=" + V;
         imageLayer.alt = imageIndex;
         imageLayer.classList.add("fullWidthHeight");
         imageLayer.onload = () => { imagesToLoad--; if (imagesToLoad == 0) { document.selectStep(index, 0); } };

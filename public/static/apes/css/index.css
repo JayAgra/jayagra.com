@@ -113,6 +113,7 @@ a:hover {
 .descriptionInsert * {
     text-align: left;
     overflow: visible;
+    line-height: 1.5em;
 }
 
 span.highlight {
@@ -243,8 +244,8 @@ span.subtle {
 
     .tooltip::before, .tooltip::after {
         position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
+        left: 85%;
+        transform: translateX(-85%);
         backdrop-filter: blur(0.75em);
         -webkit-backdrop-filter: blur(0.75em);
         opacity: 0;
@@ -274,7 +275,7 @@ span.subtle {
     }
 
     .imageContainer {
-        width: 100%;
+        width: 98%;
         height: calc(100vh - 10rem);
         justify-content: center;
         flex-direction: column;
@@ -303,39 +304,41 @@ span.subtle {
     }
 
     .stepsContainer {
-        width: 100%;
+        width: 98vw;
         height: 25vh;
         flex-direction: column;
         border-top: 1px solid #333;
     }
 
     .steps {
-        width: 100%;
+        width: 96vw;
         height: 23vh;
         position: relative;
         margin: 0.5rem;
         display: flex;
         flex-direction: row;
         overflow-x: scroll !important;
+        overflow-y: hidden;
     }
 
     .stepCard {
-        height: 20vh;
-        min-width: fit-content !important;
+        height: 15vh;
+        min-width: 70vw !important;
         margin: 0.5em;
         padding: 0 0.5em;
-        border-width: 1vh;
+        border-width: 1vw;
+        overflow: hidden;
     }
 
     .descriptionContainer {
-        width: 100%;
+        width: 98vw;
         height: 45vh;
         flex-direction: column;
         border-top: 1px solid #333;
     }
 
     .description {
-        width: 100%;
+        width: 96vw;
         height: 43vh;
         position: relative;
         margin: 0.5rem;
