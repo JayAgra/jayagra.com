@@ -67,6 +67,7 @@ async fn main() -> io::Result<()> {
             .route("/support{args}*", web::get().to(static_files::static_support))
             .route("/legal/privacy{args}*", web::get().to(static_files::static_privacy))
             .route("/legal/cookies{args}*", web::get().to(static_files::static_cookies))
+            .route("/legal/tos{args}*", web::get().to(static_files::static_tos))
             .route("/wordle.min.js", web::get().to(static_files::static_wordle_js))
             .route("/site.webmanifest", web::get().to(static_files::static_site_webmanifest))
             .route("/sitemap.xml", web::get().to(static_files::static_sitemap_xml))
