@@ -8,6 +8,7 @@ use std::{env, io, path::PathBuf};
 
 mod static_files;
 mod gc;
+mod gc_interface;
 
 include!(concat!(env!("OUT_DIR"), "/generated.rs"));
 
@@ -23,9 +24,9 @@ async fn main() -> io::Result<()> {
 
     // ratelimiting with governor
     let governor_conf = GovernorConfigBuilder::default()
-        // these may be a lil high but whatever
-        .per_nanosecond(100)
-        .burst_size(25000)
+        .per_millisecond(5)
+        .per_second(1000)
+        .burst_size(2500)
         .finish()
         .unwrap();
 
@@ -71,6 +72,8 @@ async fn main() -> io::Result<()> {
             .route("/wordle.min.js", web::get().to(static_files::static_wordle_js))
             .route("/site.webmanifest", web::get().to(static_files::static_site_webmanifest))
             .route("/sitemap.xml", web::get().to(static_files::static_sitemap_xml))
+            .route("/api/gc", web::post().to(gc_interface::great_circle_post))
+            .route("/api/gc/{lat_1}/{lon_1}/{lat_2}/{lon_2}", web::get().to(gc_interface::great_circle_get))
             // icons
             .route("/android-chrome-192x192.png", web::get().to(static_files::static_android_chrome_192))
             .route("/apple-touch-icon.png", web::get().to(static_files::static_apple_touch_icon))

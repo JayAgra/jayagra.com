@@ -2,6 +2,9 @@
 
 use std::f64::consts::PI;
 
+use serde::{Deserialize};
+
+#[derive(Deserialize)]
 pub struct Coordinate {
     pub latitude: f64,
     pub longitude: f64
@@ -12,40 +15,37 @@ impl Coordinate {
         self.latitude = (self.latitude * PI) / 180.0;
         self.longitude = (self.longitude * PI) / 180.0;
     }
-
-    pub fn vincenty(self, coordinate: Coordinate) -> (f64, f64, f64) {
-        vincenty([self, coordinate])
-    }
 }
 
-const SEMI_MAJOR_AXIS: f64 = 6378137.0; // notation a. in meters, from WGS-84
-const FLATTENING: f64 = 1.0 / 298.257223563; // notation f. from WGS-84 (unit-less)
-const SEMI_MINOR_AXIS: f64 = 6356752.314245; // notation b. in meters, from WGS-84. also (1-f)a
+// all these numbers from U.S. NGA WGS-84
+const SEMI_MAJOR_AXIS: f64 = 6378137.0; // notation a. in meters
+const FLATTENING: f64 = 1.0 / 298.257223563; // notation f (unitless)
+const SEMI_MINOR_AXIS: f64 = 6356752.314245; // notation b. in meters (1-f = a)
 
-fn vincenty(mut points: [Coordinate; 2]) -> (f64, f64, f64) {
+pub fn vincenty(mut points: [Coordinate; 2]) -> (f64, f64, f64) {
     points.iter_mut().for_each(|p| p.to_rad());
 
     // reduced latitudes
-    let u1 = ((1.0 - FLATTENING) * points[0].latitude.tan()).atan();
-    let u2 = ((1.0 - FLATTENING) * points[1].latitude.tan()).atan();
+    let u1: f64 = ((1.0 - FLATTENING) * points[0].latitude.tan()).atan();
+    let u2: f64 = ((1.0 - FLATTENING) * points[1].latitude.tan()).atan();
 
     // reduce runtime by keeping these ready
-    let sin_u1 = u1.sin();
-    let cos_u1 = u1.cos();
-    let sin_u2 = u2.sin();
-    let cos_u2 = u2.cos();
+    let sin_u1: f64 = u1.sin();
+    let cos_u1: f64 = u1.cos();
+    let sin_u2: f64 = u2.sin();
+    let cos_u2: f64 = u2.cos();
 
     // difference in longitude (Δλ = λ2 - λ1)
-    let delta_lon = points[1].longitude - points[0].longitude;
+    let delta_lon: f64 = points[1].longitude - points[0].longitude;
 
     // intermediate results are held here
 
     // first guess for longitude difference on auxillary sphere (λ)
-    let mut lambda = delta_lon;
+    let mut lambda: f64 = delta_lon;
     // previous guess, used to check convergence
-    let mut lambda_prev = 0.0;
+    let mut lambda_prev: f64 = 0.0;
     // maximum tries to avoid death in event of error
-    let mut iter_limit = 4096;
+    let mut iter_limit: u16 = 4096;
 
     // angular separation (σ)
     let mut sigma: f64 = 0.0;
@@ -69,13 +69,13 @@ fn vincenty(mut points: [Coordinate; 2]) -> (f64, f64, f64) {
         sigma = sin_sigma.atan2(cos_sigma); // angular separation (σ)
 
         // azimuthal angle (α) of the geodesic
-        let sin_alpha = cos_u1 * cos_u2 * lambda.sin() / sin_sigma; // sin(α)
+        let sin_alpha: f64 = cos_u1 * cos_u2 * lambda.sin() / sin_sigma; // sin(α)
         cos2_alpha = 1.0 - sin_alpha.powi(2); // cos²(α)
 
         // correction for σm (corrected angular separation)
         cos2_sigma_m = cos_sigma - 2.0 * sin_u1 * sin_u2 / cos2_alpha; // cos(σm)
         // correction factor
-        let correction = FLATTENING / 16.0 * cos2_alpha * (4.0 + FLATTENING * (4.0 - 3.0 * cos2_alpha));
+        let correction: f64 = FLATTENING / 16.0 * cos2_alpha * (4.0 + FLATTENING * (4.0 - 3.0 * cos2_alpha));
 
         // recalculate longitude difference (λ) for the next iter
         lambda_prev = lambda;
@@ -88,19 +88,19 @@ fn vincenty(mut points: [Coordinate; 2]) -> (f64, f64, f64) {
     }
 
     // compute distance
-    let u2 = cos2_alpha * (SEMI_MAJOR_AXIS.powi(2) - SEMI_MINOR_AXIS.powi(2)) / SEMI_MINOR_AXIS.powi(2); // (cos(α))^2 * ((a^2)-(b^2))/(b^2)
-    let a_coeff = 1.0 + (u2 / 16384.0) * (4096.0 + u2 * (-768.0 + u2 * (320.0 - 175.0 * u2))); // 
-    let b_coeff = (u2 / 1024.0) * (256.0 + u2 * (-128.0 + u2 * (74.0 - 47.0 * u2)));
+    let u2: f64 = cos2_alpha * (SEMI_MAJOR_AXIS.powi(2) - SEMI_MINOR_AXIS.powi(2)) / SEMI_MINOR_AXIS.powi(2); // (cos(α))^2 * ((a^2)-(b^2))/(b^2)
+    let a_coeff: f64 = 1.0 + (u2 / 16384.0) * (4096.0 + u2 * (-768.0 + u2 * (320.0 - 175.0 * u2))); // 
+    let b_coeff: f64 = (u2 / 1024.0) * (256.0 + u2 * (-128.0 + u2 * (74.0 - 47.0 * u2)));
 
     // correction term in distance formula (Δσ)
-    let delta_sigma = b_coeff * sin_sigma * 
+    let delta_sigma: f64 = b_coeff * sin_sigma * 
         (cos2_sigma_m + (b_coeff / 4.0) * (cos_sigma * (-1.0 + 2.0 * cos2_sigma_m.powi(2)) - (b_coeff / 6.0)  * cos2_sigma_m * (-3.0 + 4.0 * sin_sigma.powi(2)) * (-3.0 + 4.0 * cos2_sigma_m.powi(2))));
 
-    let distance = SEMI_MINOR_AXIS * a_coeff * (sigma - delta_sigma); // s
+    let distance: f64 = SEMI_MINOR_AXIS * a_coeff * (sigma - delta_sigma); // s
 
     // azimuths α1 and α2
-    let mut alpha1 = (cos_u2 * lambda.sin()).atan2((cos_u1 * sin_u2) - (sin_u1 * cos_u2 * lambda.cos())).to_degrees();
-    let mut alpha2 = (cos_u1 * lambda.sin()).atan2((-1.0 * sin_u1 * cos_u2) + (cos_u1 * sin_u2 * lambda.cos())).to_degrees();
+    let mut alpha1: f64 = (cos_u2 * lambda.sin()).atan2((cos_u1 * sin_u2) - (sin_u1 * cos_u2 * lambda.cos())).to_degrees();
+    let mut alpha2: f64 = (cos_u1 * lambda.sin()).atan2((-1.0 * sin_u1 * cos_u2) + (cos_u1 * sin_u2 * lambda.cos())).to_degrees();
 
     // normalize azimuths to [0, 360]
     if alpha1 < 0.0 { alpha1 += 360.0 }

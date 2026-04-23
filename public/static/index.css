@@ -1,30 +1,262 @@
+:root {
+    --backgroundColor: #1e1e1f; /* you will not be forgotten #024 */
+    --white: #fff;
+    --black: #000;
+    --uiElementPrimary: #fbf1c7;
+    --linkColor: #2997ff;
+    /* language colors, variables in case needed in future */
+    --languageColorSwift: #f05138;
+    --languageColorRust: #dea584;
+    --languageColorTypescript: #3178c6;
+    --languageColorCLangs: #f34b7d;
+    --languageColorJava: #b07219;
+    --languageColorShell: #89e051;
+}
+
 @font-face {
-    font-family: 'raleway';
-    src: url('fonts/Raleway-VariableFont_wght.ttf') format('truetype');
+    font-family: 'Figtree';
+    src: url('fonts/Figtree.ttf') format('truetype');
     font-display: swap;
 }
-a,a:focus,a:hover {
-    color: #fff;
-    text-decoration: none;
-}
+
 body {
-    color: #fff;
-    background-color: #002244;
+    width: 100vw;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    font-family: "raleway", sans-serif;
+    color: color-mix(in srgb, var(--uiElementPrimary) 60%, var(--white) 40%);
+    background-color: var(--backgroundColor);
+    font-family: "Figtree", -apple-system, BlinkMacSystemFont, sans-serif;
 }
-.footercont {
+
+.container {
+    width: 100vw;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.VStack {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.HStack {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.ZStack {
+    display: block;
+}
+
+.VStackCenter {
+    justify-content: center !important;
+    align-items: center;
+    height: 100vh;
+}
+
+.paragraphCaption {
+    margin: 0;
+}
+
+.itemGrid {
+    width: 100%;
     display: grid;
 }
-.heading {
-    padding-top: 2vh;
+
+.base64Grid {
+    column-gap: 10px;
+    row-gap: 15px;
+    aspect-ratio: 1/1;
+    grid-template-columns: repeat(2, 45vw);
+    -webkit-column-gap: 10px;
 }
-.lead {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif !important;
+
+.base64Grid > .ZStack {
+    border-radius: 10px;
+    border: 2px solid var(--uiElementPrimary);
+    background-color: color-mix(in srgb, var(--backgroundColor) 90%, var(--uiElementPrimary) 10%);
 }
+
+.toolTitleContainer {
+    height: 1.5rem;
+    position: relative;
+    top: calc(-1rem - 3px);
+    left: -1px;
+    z-index: 0;
+    border: 2px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: var(--uiElementPrimary);
+}
+
+.toolTitle {
+    font-weight: 500;
+    color: var(--backgroundColor);
+    text-transform: uppercase;
+}
+
+.innerTileRow {
+    justify-content: space-evenly;
+}
+
+.innerTileRow > p {
+    text-align: left;
+}
+
+.name {
+    font-size: 3.5rem;
+    font-weight: 500;
+    margin: 0
+}
+
+.highLevelAbout {
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-bottom: .5rem;
+}
+
+.languageList {
+    font-size: 0.9rem;
+    margin-top: 0;
+}
+
+.swift {
+    color: var(--languageColorSwift);
+}
+
+.rust {
+    color: var(--languageColorRust);
+}
+
+.typescript {
+    color: var(--languageColorTypescript);
+}
+
+.cLangs {
+    color: var(--languageColorCLangs);
+}
+
+.java {
+    color: var(--languageColorJava);
+}
+
+.shell {
+    color: var(--languageColorShell);
+}
+
 hr {
-    width: 10em;
-    background-color: #1f4b4d;
-    height: 0.1vh;
-    border-color: #1f4b4d;
+    width: 80%;
+    background-color: var(--uiElementPrimary);
+    height: 1px; /* 4px max maybe for mobile */
+    border: none;
+}
+
+.sectionHeader {
+    font-weight: 500;
+}
+
+a, a:visited {
+    color: var(--linkColor);
+    text-decoration: none;
+}
+
+a:focus, a:hover {
+    color: color-mix(in srgb, var(--linkColor) 25%, var(--textColorPrimary) 75%);
+    text-decoration: underline dotted;
+}
+
+a:active {
+    color: var(--textColorPrimary);
+    text-decoration: underline dashed;
+}
+
+.endMargin {
+    margin-bottom: calc(5vw - 10px);
+}
+
+.bottomToolbar {
+    z-index: 1;
+    background-color: var(--uiElementPrimary);
+    color: var(--backgroundColor);
+    width: calc(100vw - 2rem);
+    position: absolute;
+    bottom: 0;
+    padding: 1rem;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.bottomToolbar > * > a, .bottomToolbar > * > a:visited {
+    color: var(--backgroundColor);
+    text-decoration: underline dotted;
+}
+
+.bottomToolbar > * > a:focus, .bottomToolbar > * > a:hover {
+    color: var(--linkColor);
+    text-decoration: underline solid;
+}
+
+.bottomToolbar > * > a:active {
+    color: var(--black);
+    text-decoration: underline dashed;
+}
+
+@media (orientation: portrait) {
+    .base64Grid {
+        grid-template-columns: repeat(1, 90vw);
+    }
+
+    .toolTitleContainer {
+        width: calc(100% + 2px);
+    }
+
+    .base64Grid > .ZStack {
+        width: 90vw;
+        height: 60vw;
+    }
+
+    .innerTile {
+        height: calc(0.9 * (60vw - 4rem - 4px));
+    }
+
+    .innerTileRow > button, .innerTileRow > textarea, .innerTileRow > p, .innerTileRow > .VStack, .innerTileRow > input, .innerTileRow > img {
+        width: calc(0.4 * 90vw);
+    }
+
+    .innerTileRow > textarea {
+        height: calc(0.7 * (60vw - 10rem - 4px));
+    }
+}
+
+@media (orientation: landscape) {
+    .base64Grid {
+        grid-template-columns: repeat(2, 45vw);
+    }
+
+    .toolTitleContainer {
+        width: calc(100% + 2px);
+    }
+
+    .base64Grid > .ZStack {
+        width: calc(45vw - 10px);
+        height: 30vw;
+    }
+
+    .innerTile {
+        height: calc(0.9 * (30vw - 4rem - 4px));
+    }
+
+    .innerTileRow > button, .innerTileRow > textarea, .innerTileRow > p, .innerTileRow > .VStack, .innerTileRow > input, .innerTileRow > img {
+        width: calc(0.4 * (45vw - 10px));
+    }
+
+    .innerTileRow > textarea {
+        height: calc(0.7 * (30vw - 10rem - 4px));
+    }
 }

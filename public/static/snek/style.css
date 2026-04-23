@@ -1,18 +1,12 @@
 /* Set fonts */
 @font-face {
-    font-family: 'raleway-300';
-    src: url('../fonts/Raleway-300.ttf') format('truetype');
-    font-display:swap
-}
-
-@font-face {
-    font-family: 'raleway-500';
-    src: url('../fonts/Raleway-500.ttf') format('truetype');
-    font-display:swap
+    font-family: 'Figtree';
+    src: url('../fonts/Figtree.ttf') format('truetype');
+    font-display: swap
 }
 
 body, html {
-    font-family: 'raleway-300'
+    font-family: 'Figtree'
 }
 
 /* flexbox display to center the game */
