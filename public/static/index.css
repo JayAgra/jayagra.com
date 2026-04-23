@@ -185,15 +185,16 @@ a:active {
     z-index: 1;
     background-color: var(--uiElementPrimary);
     color: var(--backgroundColor);
-    width: calc(100vw - 2rem);
+    width: calc(100vw - 4rem);
     position: absolute;
-    bottom: 0;
+    bottom: 1rem;
+    left: 1rem;
     padding: 1rem;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-radius: 15px;
 }
 
 .bottomToolbar > * > a, .bottomToolbar > * > a:visited {
+    font-size: 1.125rem;
     color: var(--backgroundColor);
     text-decoration: underline dotted;
 }
@@ -219,8 +220,9 @@ a:active {
 
 @media (max-height: 24rem) {
     .bottomToolbar {
-        position: unset;
-        bottom: unset;
+        position: relative;
+        right: 1rem;
+        bottom: 1rem;
     }
 }
 
