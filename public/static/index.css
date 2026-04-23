@@ -110,9 +110,10 @@ body {
 }
 
 .name {
-    font-size: 3.5rem;
+    font-size: 3.25rem;
     font-weight: 500;
-    margin: 0
+    margin-top: 0;
+    margin: 0 .5rem;
 }
 
 .highLevelAbout {
@@ -205,6 +206,22 @@ a:active {
 .bottomToolbar > * > a:active {
     color: var(--black);
     text-decoration: underline dashed;
+}
+
+.iconLinkItem {
+    width: 5rem;
+}
+
+.container.VStackCenter {
+    height: calc(100vh - 3rem);
+    min-height: 24rem;
+}
+
+@media (max-height: 24rem) {
+    .bottomToolbar {
+        position: unset;
+        bottom: unset;
+    }
 }
 
 @media (orientation: portrait) {
