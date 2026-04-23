@@ -44,7 +44,7 @@ document.loadContent = (index) => {
     copyrightDiv.style = "background: transparent !important; border: transparent !important;";
     copyrightDiv.classList.add("mobileHidden");
     var copyright = document.createElement("small");
-    copyright.innerHTML = "<details><summary>Copyright © 2025 Jayen Agrawal. All Rights Reserved. Click for details.</summary><p style=\"padding-left: 0.5em\"><br>Licensed Content:<br>" + "Diagram Copyright © 2025 " + CYCLES[index].copyright + "<br>Descriptions Copyright © 2025 Milo Kroh.<br><br>Contact <a href=\"mailto:jay@jayagra.com\">jay@jayagra.com</a> for inquiries and bug reports.<br><br>v" + V + "<br>" + navigator.userAgent + "</p></details><br>"
+    copyright.innerHTML = "<details><summary>Copyright © 2025 Jayen Agrawal. All Rights Reserved. Click for details.</summary><p style=\"padding-left: 0.5em\"><br>Licensed Content:<br>" + "Diagram Copyright © 2025 " + CYCLES[index].copyright + "<br>Descriptions Copyright © 2025 Milo Kroh.<br><br>Contact <a href=\"mailto:dev@jayagra.com\">dev@jayagra.com</a> for inquiries and bug reports.<br><br>v" + V + "<br>" + navigator.userAgent + "</p></details><br>"
     copyrightDiv.appendChild(copyright);
     stepsContainer.appendChild(copyrightDiv);
     var imageStack = document.getElementsByClassName("imageLayers")[0];

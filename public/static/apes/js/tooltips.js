@@ -20,7 +20,7 @@ document.activateTooltips = () => {
         if (definition) {
             term.setAttribute("data-tooltip", definition)
         } else {
-            term.setAttribute("data-tooltip", "An error was encountered when loading the definition. Please report this bug to jay@jayagra.com.")
+            term.setAttribute("data-tooltip", "An error was encountered when loading the definition. Please report this bug to dev@jayagra.com.")
         }
     })
 };
