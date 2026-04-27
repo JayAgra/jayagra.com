@@ -177,7 +177,7 @@ body {
 
 .nyuPill::before {
     content: "";
-    background-image: url("../nyutorch.svg");
+    background-image: url("./nyutorch.svg");
     background-size: calc(0.9rem + 10px);
     background-repeat: no-repeat;
     display: inline-block;
