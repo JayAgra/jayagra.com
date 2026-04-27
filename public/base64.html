@@ -142,66 +142,6 @@
                 <small>Copyright © 2024-2026 Jayen Agrawal. All rights reserved.</small>
             </div>
         </div>
-        <script>
-            function encodeCred() {
-                var e = document.getElementById("in_username").value,
-                    t = document.getElementById("in_password").value;
-
-                document.getElementById("cred_output").value = btoa(e + ":" + t);
-            }
-            function decodeCred() {
-                var e = document.getElementById("cred_input").value;
-                if (e) {
-                    var decoded = atob(e).split(":");
-                    document.getElementById("out_username").value = decoded[0] || "";
-                    document.getElementById("out_password").value = decoded[1] || "";
-                }
-            }
-            function convertText() {
-                var e = document.getElementById("base64str").value;
-                document.getElementById("outputBase64").textContent = atob(e);
-            }
-            function convertTextR() {
-                var e = document.getElementById("base64strR").value;
-                document.getElementById("outputBase64R").textContent = btoa(e);
-            }
-            function convertImage() {
-                let e = document.getElementById("imageUpload"),
-                    t = e.files[0],
-                    n = new FileReader();
-                (n.onloadend = () => {
-                    let e = n.result;
-                    document.getElementById("outputBase64URL").textContent = e;
-                }),
-                n.readAsDataURL(t)
-            }
-            function convertToImage() {
-                let b64 = document.getElementById("inputBase64URL").value;
-                if (b64) {
-                    document.getElementById("outputImage").src = b64;
-                }
-            }
-            // export functions
-            function downloadImage() {
-                let b64 = document.getElementById("inputBase64URL").value;
-                if (b64) {
-                    var link = document.createElement("a");
-                    link.href = b64;
-                    link.download = String(Date.now())
-                    link.click();
-                }
-            }
-            function copyContentOf(element) {
-                var text = document.getElementById(element).value;
-                if (text) {
-                    navigator.clipboard.writeText(text).then(
-                        () => {},
-                        () => {
-                            alert("Copy failed.")
-                        }
-                    )
-                }
-            }
-        </script>
+        <script src="static/base64.min.js"></script>
     </body>
 </html>
