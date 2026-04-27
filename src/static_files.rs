@@ -6,16 +6,13 @@ use std::{include_bytes, include_str};
 
 const INDEX_HTML: &str = include_str!("../public/index.html");
 const MINESWEEPER_HTML: &str = include_str!("../public/minesweeper.html");
-const SNEK_HTML: &str = include_str!("../public/snek.html");
-const TWENTY48_HTML: &str = include_str!("../public/2048.html");
-const TWENTY48_8_HTML: &str = include_str!("../public/2048_8.html");
+const SNAKE_HTML: &str = include_str!("../public/snake.html");
 const BASE64_HTML: &str = include_str!("../public/base64.html");
 const ENVIRONMENT_CYCLES_HTML: &str = include_str!("../public/ec.html");
 const APP_SUPPORT_HTML: &str = include_str!("../public/support.html");
 const PRIVACY_HTML: &str = include_str!("../public/privacy.html");
 const COOKIES_HTML: &str = include_str!("../public/cookies.html");
 const TOS_HTML: &str = include_str!("../public/tos.html");
-const SCOUTING_HTML: &str = include_str!("../public/scouting.html");
 const WORDLE_JS: &str = include_str!("../public/wordle.min.js");
 const SITEMAP_XML: &str = include_str!("../public/sitemap.xml");
 const SITE_WEBMANI: &str = include_str!("../public/site.webmanifest");
@@ -48,16 +45,8 @@ pub async fn static_minesweeper() -> HttpResponse {
     HttpResponse::Ok().content_type(ContentType::html()).body(MINESWEEPER_HTML)
 }
 
-pub async fn static_snek() -> HttpResponse {
-    HttpResponse::Ok().content_type(ContentType::html()).body(SNEK_HTML)
-}
-
-pub async fn static_2048() -> HttpResponse {
-    HttpResponse::Ok().content_type(ContentType::html()).body(TWENTY48_HTML)
-}
-
-pub async fn static_2048_8() -> HttpResponse {
-    HttpResponse::Ok().content_type(ContentType::html()).body(TWENTY48_8_HTML)
+pub async fn static_snake() -> HttpResponse {
+    HttpResponse::Ok().content_type(ContentType::html()).body(SNAKE_HTML)
 }
 
 pub async fn static_base64() -> HttpResponse {
@@ -84,16 +73,12 @@ pub async fn static_tos() -> HttpResponse {
     HttpResponse::Ok().content_type(ContentType::html()).body(TOS_HTML)
 }
 
-pub async fn static_scouting() -> HttpResponse {
-    HttpResponse::Ok().content_type(ContentType::html()).body(SCOUTING_HTML)
-}
-
 pub async fn static_wordle_js() -> HttpResponse {
     HttpResponse::Ok().content_type(ContentType::html()).body(WORDLE_JS)
 }
 
 pub async fn static_sitemap_xml() -> HttpResponse {
-    HttpResponse::Ok().content_type(ContentType::html()).body(SITEMAP_XML)
+    HttpResponse::Ok().content_type(ContentType::xml()).body(SITEMAP_XML)
 }
 
 pub async fn static_site_webmanifest() -> HttpResponse {

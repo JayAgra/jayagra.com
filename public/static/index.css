@@ -1,16 +1,19 @@
 :root {
-    --backgroundColor: #1e1e1f; /* you will not be forgotten #024 */
+    /* r.i.p. #024 */
+    --backgroundColor: #1e1e1f;
     --white: #fff;
     --black: #000;
     --uiElementPrimary: #fbf1c7;
     --linkColor: #2997ff;
-    /* language colors, variables in case needed in future */
     --languageColorSwift: #f05138;
     --languageColorRust: #dea584;
     --languageColorTypescript: #3178c6;
     --languageColorCLangs: #f34b7d;
     --languageColorJava: #b07219;
     --languageColorShell: #89e051;
+    --nyuColor: #7E0ACB;
+    --textColorPrimary: color-mix(in srgb, var(--uiElementPrimary) 65%, var(--white) 35%);
+    --backgroundAccent: color-mix(in srgb, var(--backgroundColor) 90%, var(--uiElementPrimary) 10%);
 }
 
 @font-face {
@@ -26,7 +29,7 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: color-mix(in srgb, var(--uiElementPrimary) 65%, var(--white) 35%);
+    color: var(--textColorPrimary);
     background-color: var(--backgroundColor);
     font-family: "Figtree", -apple-system, BlinkMacSystemFont, sans-serif;
 }
@@ -80,7 +83,7 @@ body {
 .base64Grid > .ZStack {
     border-radius: 10px;
     border: 2px solid var(--uiElementPrimary);
-    background-color: color-mix(in srgb, var(--backgroundColor) 90%, var(--uiElementPrimary) 10%);
+    background-color: var(--backgroundAccent);
 }
 
 .toolTitleContainer {
@@ -109,6 +112,10 @@ body {
     text-align: left;
 }
 
+.pageTitle {
+    font-weight: 500;
+}
+
 .name {
     font-size: 3.25rem;
     font-weight: 500;
@@ -116,39 +123,71 @@ body {
     margin: 0 .5rem;
 }
 
+.location {
+    margin-top: 0.35rem;
+    margin-bottom: 0;
+}
+
 .highLevelAbout {
     font-size: 1.25rem;
     font-weight: 400;
-    margin-bottom: .5rem;
+    margin: 1rem 0;
 }
 
 .languageList {
     font-size: 0.9rem;
-    margin-top: 0;
+    margin: calc(5px + 0.125rem) 0;
+}
+
+.pill {
+    padding: 5px 8px;
+    border-radius: 15px;
+    color: var(--backgroundColor);
+    margin: 3px;
 }
 
 .swift {
-    color: var(--languageColorSwift);
+    background-color: var(--languageColorSwift);
 }
 
 .rust {
-    color: var(--languageColorRust);
+    background-color: var(--languageColorRust);
 }
 
 .typescript {
-    color: var(--languageColorTypescript);
+    background-color: color-mix(in srgb, var(--languageColorTypescript) 90%, var(--textColorPrimary) 10%);
 }
 
 .cLangs {
-    color: var(--languageColorCLangs);
+    background-color: var(--languageColorCLangs);
 }
 
 .java {
-    color: var(--languageColorJava);
+    background-color: var(--languageColorJava);
 }
 
 .shell {
-    color: var(--languageColorShell);
+    background-color: var(--languageColorShell);
+}
+
+.nyuPill {
+    background-color: var(--nyuColor);
+    color: var(--textColorPrimary);
+}
+
+.nyuPill::before {
+    content: "";
+    background-image: url("../nyutorch.svg");
+    background-size: calc(0.9rem + 10px);
+    background-repeat: no-repeat;
+    display: inline-block;
+    position: relative;
+    top: 5px;
+    left: -0.2rem;
+    width: calc(0.9rem + 8px);
+    height: calc(0.9rem + 8px);
+    margin: 0;
+    margin-right: 0.25rem;
 }
 
 hr {
@@ -210,8 +249,12 @@ a:active {
     text-decoration: underline dashed;
 }
 
+.iconHolder {
+    margin-bottom: 1.5rem;
+}
+
 .iconLinkItem {
-    width: 5rem;
+    width: 6rem;
 }
 
 .container.VStackCenter {
@@ -219,7 +262,7 @@ a:active {
     min-height: 24rem;
 }
 
-@media (max-height: 24rem) {
+@media (max-height: 30rem) {
     .bottomToolbar {
         position: relative;
         right: 1rem;
