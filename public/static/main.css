@@ -209,17 +209,6 @@ body {
     content: "NYU Tandon '29";
 }
 
-hr {
-    width: 80%;
-    background-color: var(--uiElementPrimary);
-    height: 1px;
-    border: none;
-}
-
-.sectionHeader {
-    font-weight: 500;
-}
-
 a, a:visited {
     color: var(--linkColor);
     text-decoration: none;
