@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Jayen Agrawal - jayagra.com</title>
         <meta name="description" content="Jayen Agrawal">
         <link rel="shortcut icon" href="/favicon.ico?v=110-01">
@@ -17,35 +17,38 @@
     </head>
     <body>
         <div class="ZStack">
-            <div class="container VStack VStackCenter" style="z-index: 1;">
+            <div class="container VStack VStackCenter" style="z-index: 1;" role="main">
                 <h1 class="name">Jayen Agrawal</h1>
                 <p class="location">New York, NY • <a href="mailto:jay@jayagra.com">jay@jayagra.com</a></p>
                 <p class="highLevelAbout">Developer & Student</p>
-                <div class="HStack iconHolder" style="width: 15rem">
+                <div class="HStack iconHolder">
                     <div class="VStack iconLinkItem">
                         <a href="https://github.com/JayAgra">
-                            <svg viewBox="0 0 512 512" width="2.5rem"><path fill="var(--uiElementPrimary)" d="M335 499c-13 0-16-6-16-12l1-70c0-24-8-40-18-48 57-6 117-28 117-126 0-28-10-51-26-69 3-6 11-32-3-67 0 0-21-7-70 26-42-12-86-12-128 0-49-33-70-26-70-26-14 35-6 61-3 67-16 18-26 41-26 69 0 98 59 120 116 126-7 7-14 18-16 35-15 6-52 17-74-22 0 0-14-24-40-26 0 0-25 0-1 16 0 0 16 7 28 37 0 0 15 50 86 34l1 44c0 6-3 12-16 12-14 0-12 17-12 17H347s2-17-12-17Z"/></svg>
+                            <svg viewBox="0 0 512 512"><path fill="var(--uiElementPrimary)" d="M335 499c-13 0-16-6-16-12l1-70c0-24-8-40-18-48 57-6 117-28 117-126 0-28-10-51-26-69 3-6 11-32-3-67 0 0-21-7-70 26-42-12-86-12-128 0-49-33-70-26-70-26-14 35-6 61-3 67-16 18-26 41-26 69 0 98 59 120 116 126-7 7-14 18-16 35-15 6-52 17-74-22 0 0-14-24-40-26 0 0-25 0-1 16 0 0 16 7 28 37 0 0 15 50 86 34l1 44c0 6-3 12-16 12-14 0-12 17-12 17H347s2-17-12-17Z"/></svg>
                             <p class="paragraphCaption">GitHub</p>
                         </a>
                     </div>
                     <div class="VStack iconLinkItem">
                         <a href="https://apps.apple.com/us/developer/jayen-agrawal/id1722405712">
-                            <svg role="img" viewBox="40 0 448 448" width="2.5rem"><path fill="var(--uiElementPrimary)" d="m406 335s-9 30-26 54-31 47-60 47c-23 0-35-15-61-15s-42 15-64 15-33-15-50-35c-44-55-62-146-38-194s59-58 84-58 48 16 63 16 38-17 68-17 59 13 74 38c-49 27-64 115 10 149M327 56c5 36-27 89-76 88-5-42 32-85 76-88"/></svg>
+                            <svg role="img" viewBox="40 0 448 448"><path fill="var(--uiElementPrimary)" d="m406 335s-9 30-26 54-31 47-60 47c-23 0-35-15-61-15s-42 15-64 15-33-15-50-35c-44-55-62-146-38-194s59-58 84-58 48 16 63 16 38-17 68-17 59 13 74 38c-49 27-64 115 10 149M327 56c5 36-27 89-76 88-5-42 32-85 76-88"/></svg>
                             <p class="paragraphCaption">App Store</p>
                         </a>
                     </div>
                 </div>
                 <div class="VStack">
-                    <p class="languageList"><span class="pill swift">Swift</span><span class="pill rust">Rust</span><span class="pill typescript">Web</span><span class="pill cLangs">C/C++</span><span class="pill java">Java</span><span class="pill shell">Shell</span></p>
-                    <p class="languageList" title="Pursuing a Bachelor of Science in Computer Science, Tandon School of Engineering"><span class="pill nyuPill">New York University '29</span></p>
+                    <div class="languageList centerWrap"><span class="pill swift">Swift</span><span class="pill rust">Rust</span><span class="pill typescript">Web</span><span class="pill cLangs">C/C++</span><span class="pill java">Java</span><span class="pill shell">Shell</span></div>
+                    <div class="languageList" title="Pursuing a Bachelor of Science in Computer Science, Tandon School of Engineering"><span class="pill nyuPill"></span></div>
                 </div>
             </div>
-            <div class="container VStack bottomToolbar" style="z-index: 0;">
-                <div class="HStack">
+            <input type="checkbox" class="navCheck" id="navCheck"/>
+            <label class="bottomToolbar" role="navigation" for="navCheck">
+                <svg role="img" viewBox="0 0 24 24"><path d="m4 6h16m-16 6h16m-16 6h16" fill="var(--backgroundColor)" stroke="var(--backgroundColor)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+                <svg role="img" viewBox="0 0 24 24"><g fill="var(--backgroundColor)" stroke="var(--backgroundColor)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="m6.3431458 6.3431458 11.3137082 11.3137082m-11.6137083-11.0437083 11.3137083 11.3137083"/><path d="m6.05815 17.641858 11.313708-11.313708m-11.0437081 11.613708 11.3137081-11.313708"/></g></svg>
+                <div class="VStack navMenuContent">
                     <a href="snake">Snake</a>
                     <a href="base64">base64</a>
                     <a href="minesweeper">Minesweeper</a>
-                    <!-- <a href="ec">Environmental Cycles</a> -->
+                    <a href="ec">Environmental Cycles</a>
                 </div>
             </div>
         </div>

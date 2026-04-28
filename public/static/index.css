@@ -23,9 +23,10 @@
 }
 
 body {
-    width: 100vw;
-    margin: 0;
     display: flex;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -35,9 +36,8 @@ body {
 }
 
 .container {
-    width: 100vw;
-    max-width: 100%;
     display: flex;
+    width: 100vw;
     justify-content: center;
 }
 
@@ -58,9 +58,15 @@ body {
 }
 
 .VStackCenter {
+    height: 100vh;
     justify-content: center !important;
     align-items: center;
-    height: 100vh;
+}
+
+.centerWrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .paragraphCaption {
@@ -68,8 +74,8 @@ body {
 }
 
 .itemGrid {
-    width: 100%;
     display: grid;
+    width: 100%;
 }
 
 .base64Grid {
@@ -81,17 +87,17 @@ body {
 }
 
 .base64Grid > .ZStack {
-    border-radius: 10px;
-    border: 2px solid var(--uiElementPrimary);
     background-color: var(--backgroundAccent);
+    border: 2px solid var(--uiElementPrimary);
+    border-radius: 10px;
 }
 
 .toolTitleContainer {
-    height: 1.5rem;
     position: relative;
     top: calc(-1rem - 3px);
     left: -1px;
     z-index: 0;
+    height: 1.5rem;
     border: 2px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -136,14 +142,24 @@ body {
 
 .languageList {
     font-size: 0.9rem;
-    margin: calc(5px + 0.125rem) 0;
+    margin: 0.3rem 0;
+    height: calc(0.9rem + 1rem);
 }
 
 .pill {
-    padding: 5px 8px;
+    padding: 0.3125rem 0.5rem;
     border-radius: 15px;
+    height: 1.15rem;
     color: var(--backgroundColor);
-    margin: 3px;
+    margin: 0.25rem;
+    min-width: 0;
+    transition: ease-in all 0.1s;
+}
+
+.pill:hover, .pill:active {
+    box-shadow: 0.15rem 0.15rem 0.75rem var(--backgroundAccent);
+    padding: 0.375rem 0.5625rem;
+    margin: 0.1875rem;
 }
 
 .swift {
@@ -177,23 +193,27 @@ body {
 
 .nyuPill::before {
     content: "";
-    background-image: url("./nyutorch.svg");
-    background-size: calc(0.9rem + 10px);
+    position: relative;
+    top: 0.3125rem;
+    left: -0.2rem;
+    background-image: url("./torch.svg");
+    background-size: 1.525rem;
     background-repeat: no-repeat;
     display: inline-block;
-    position: relative;
-    top: 5px;
-    left: -0.2rem;
-    width: calc(0.9rem + 8px);
-    height: calc(0.9rem + 8px);
+    width: 1.4rem;
+    height: 1.4rem;
     margin: 0;
     margin-right: 0.25rem;
+}
+
+.nyuPill::after {
+    content: "NYU Tandon '29";
 }
 
 hr {
     width: 80%;
     background-color: var(--uiElementPrimary);
-    height: 1px; /* 4px max maybe for mobile */
+    height: 1px;
     border: none;
 }
 
@@ -220,33 +240,102 @@ a:active {
     margin-bottom: calc(5vw - 10px);
 }
 
+.navCheck {
+    position: absolute;
+    left: -999999px;
+}
+
 .bottomToolbar {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
     z-index: 1;
     background-color: var(--uiElementPrimary);
-    color: var(--backgroundColor);
-    width: calc(100vw - 4rem);
-    position: absolute;
-    bottom: 1rem;
-    left: 1rem;
+    width: 2rem;
+    height: 2rem;
     padding: 1rem;
     border-radius: 15px;
+    transition: ease-in all 0.15s;
 }
 
-.bottomToolbar > * > a, .bottomToolbar > * > a:visited {
-    width: calc((100vw - 4rem) / 3);
-    font-size: 1.125rem;
+.bottomToolbar > svg:first-of-type {
+    display: unset;
+    position: absolute;
+    top: unset;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    left: unset;
+    width: 2.5rem;
+}
+
+.bottomToolbar > svg:last-of-type {
+    display: none;
+}
+
+.bottomToolbar > .navMenuContent {
+    visibility: hidden;
+    opacity: 0;
+    transition-delay: 0s;
+    transition-property: visibility 0s;
+}
+
+.bottomToolbar:hover, .navCheck:checked + .bottomToolbar {
+    border-radius: 2rem;
+    width: 18em;
+    height: 18em;
+    max-width: calc(100vw - 4rem);
+    max-height: calc(100vh - 2rem);
+    background-color: #2997ff;
+    border-radius: 15px;
+    background-color: var(--uiElementPrimary);
+    transition: ease-in all 0.15s;
+}
+
+.bottomToolbar:hover > svg:first-of-type, .navCheck:checked + .bottomToolbar > svg:first-of-type {
+    display: none;
+}
+
+.bottomToolbar:hover > svg:last-of-type, .navCheck:checked + .bottomToolbar > svg:last-of-type {
+    display: unset;
+    position: absolute;
+    top: unset;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    left: unset;
+    width: 2.5rem;
+}
+
+.bottomToolbar:hover > .navMenuContent, .navCheck:checked + .bottomToolbar > .navMenuContent {
+    /* display: flex; */
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0.2s;
+    transition-property: visibility 0.15s;
+}
+
+.navMenuContent {
     color: var(--backgroundColor);
-    text-decoration: underline dotted;
+    text-align: left;
+    width: 18rem;
+    max-width: calc(100vw - 6rem);
+    height: calc(100% - 4rem);
+    max-height: 100vh;
+    justify-content: flex-start;
 }
 
-.bottomToolbar > * > a:focus, .bottomToolbar > * > a:hover {
-    color: var(--linkColor);
-    text-decoration: underline solid;
+.navMenuContent > a {
+    display: none;
+    color: var(--backgroundColor);
+    font-size: 1.5rem;
+    margin: 0.75rem 0;
 }
 
-.bottomToolbar > * > a:active {
-    color: var(--black);
-    text-decoration: underline dashed;
+.bottomToolbar:hover > .navMenuContent > a, .navCheck:checked + .bottomToolbar > .navMenuContent > a {
+    display: unset;
+}
+
+.HStack.iconHolder {
+    width: 15rem;
 }
 
 .iconHolder {
@@ -257,16 +346,66 @@ a:active {
     width: 6rem;
 }
 
+.iconLinkItem > a > svg {
+    width: 2.5rem;
+}
+
 .container.VStackCenter {
     height: calc(100vh - 3rem);
     min-height: 24rem;
 }
 
-@media (max-height: 30rem) {
-    .bottomToolbar {
-        position: relative;
-        right: 1rem;
-        bottom: 1rem;
+@media (max-width: 21.5rem) {
+    .languageList:last-of-type {
+        margin-top: 2.325rem !important;
+    }
+}
+
+@media (max-width: 15rem) {
+    .HStack.iconHolder {
+        width: 100vw;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .nyuPill::after {
+        content: "NYU '29";
+    }
+
+    .navMenuContent > a {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 11rem) {
+    .languageList:last-of-type {
+        margin-top: 4.65rem !important;
+    }
+}
+
+@media (max-width: 10rem) {
+    .nyuPill::before {
+        content: "";
+        background: none;
+        width: 0;
+        left: 0;
+    }
+
+    .navMenuContent {
+        width: 19.5rem;
+        max-width: calc(100vw - 4rem);
+    }
+}
+
+@media (max-width: 8rem) {
+    .nyuPill::after {
+        content: "NYU";
+    }
+}
+
+@media (max-width: 7.5rem) {
+    .languageList:last-of-type {
+        margin-top: 6.975rem !important;
     }
 }
 
@@ -323,3 +462,5 @@ a:active {
         height: calc(0.7 * (30vw - 10rem - 4px));
     }
 }
+
+/* top right bottom left */
