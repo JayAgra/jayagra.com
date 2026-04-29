@@ -459,10 +459,20 @@ a:active {
             top: 2vw;
             right: 2vw;
         }
+
+        .navMenuContent {
+            top: 2vw;
+            right: 2vw;
+        }
     }
 
     @media (min-width: 750px) and (max-width: 999px) {
         .bottomToolbar {
+            top: 3rem;
+            right: 3rem;
+        }
+
+        .navMenuContent {
             top: 3rem;
             right: 3rem;
         }
@@ -473,10 +483,26 @@ a:active {
             top: 5rem;
             right: 5rem;
         }
+
+        .navMenuContent {
+            top: 5rem;
+            right: 5rem;
+        }
     }
 
     .bottomToolbar:hover {
         border-radius: 2rem;
+    }
+
+    .navMenuContent {
+        border-bottom-right-radius: 15px;
+        border-top-right-radius: 2rem;
+        padding-top: 4rem;
+        height: 13.5em;
+    }
+
+    .navMenuContent:last-child {
+        margin-bottom: 0;
     }
 }
 
