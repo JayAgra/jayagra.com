@@ -9,7 +9,7 @@
     --languageColorRust: #dea584;
     --languageColorTypescript: #3178c6;
     --languageColorCLangs: #f34b7d;
-    --languageColorJava: #b07219;
+    --languageColorJava: #ff9725;
     --languageColorShell: #89e051;
     --nyuColor: #7E0ACB;
     --textColorPrimary: color-mix(in srgb, var(--uiElementPrimary) 65%, var(--white) 35%);
@@ -170,7 +170,7 @@ body {
 }
 
 .typescript {
-    background-color: color-mix(in srgb, var(--languageColorTypescript) 90%, var(--textColorPrimary) 10%);
+    background-color: color-mix(in srgb, var(--languageColorTypescript) 80%, var(--textColorPrimary) 20%);
 }
 
 .cLangs {
