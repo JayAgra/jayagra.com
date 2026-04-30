@@ -1,8 +1,6 @@
 :root {
     /* r.i.p. #024 */
     --backgroundColor: #1e1e1f;
-    --white: #fff;
-    --black: #000;
     --uiElementPrimary: #fbf1c7;
     --linkColor: #2997ff;
     --languageColorSwift: #f05138;
@@ -11,8 +9,10 @@
     --languageColorCLangs: #f34b7d;
     --languageColorJava: #ff9725;
     --languageColorShell: #89e051;
-    --nyuColor: #7E0ACB;
-    --textColorPrimary: color-mix(in srgb, var(--uiElementPrimary) 65%, var(--white) 35%);
+    --nyuColor: #7e0acb;
+    --gitColor: #f03c2e;
+    --appStoreColor: #01abf0;
+    --textColorPrimary: color-mix(in srgb, var(--uiElementPrimary) 65%, #fff 35%);
     --backgroundAccent: color-mix(in srgb, var(--backgroundColor) 90%, var(--uiElementPrimary) 10%);
 }
 
@@ -58,8 +58,19 @@ body {
 
 .VStackCenter {
     height: 100vh;
-    justify-content: center !important;
+    justify-content: center;
     align-items: center;
+}
+
+.justifyCenter {
+    justify-content: center;
+    align-items: center;
+}
+
+.projectContent {
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 1vw;
 }
 
 .centerWrap {
@@ -77,29 +88,27 @@ body {
     width: 100%;
 }
 
-.base64Grid {
+.base64Grid, .projectGrid {
     column-gap: 10px;
     row-gap: 15px;
-    aspect-ratio: 1/1;
     grid-template-columns: repeat(2, 45vw);
     -webkit-column-gap: 10px;
 }
 
-.base64Grid > .ZStack {
+.base64Grid > .ZStack, .projectGrid > .ZStack {
     background-color: var(--backgroundAccent);
     border: 2px solid var(--uiElementPrimary);
-    border-radius: 10px;
+    border-radius: 15px;
 }
 
-.toolTitleContainer {
+.itemTitleContainer {
     position: relative;
     top: calc(-1rem - 3px);
     left: -1px;
-    z-index: 0;
     height: 1.5rem;
     border: 2px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
     background-color: var(--uiElementPrimary);
 }
 
@@ -109,8 +118,18 @@ body {
     text-transform: uppercase;
 }
 
+.projectTitle {
+    font-weight: 500;
+    color: var(--backgroundColor);
+}
+
 .innerTileRow {
     justify-content: space-evenly;
+}
+
+.innerTile {
+    position: relative;
+    top: -1rem;
 }
 
 .innerTileRow > p {
@@ -139,10 +158,10 @@ body {
     margin: 1rem 0;
 }
 
-.languageList {
+.languageList, .tagList {
     font-size: 0.9rem;
     margin: 0.3rem 0;
-    height: calc(0.9rem + 1rem);
+    /* height: 1.9rem; */
 }
 
 .pill {
@@ -151,7 +170,6 @@ body {
     height: 1.15rem;
     color: var(--backgroundColor);
     margin: 0.25rem;
-    min-width: 0;
     transition: ease-in all 0.1s;
 }
 
@@ -159,6 +177,52 @@ body {
     box-shadow: 0.15rem 0.15rem 0.75rem var(--backgroundAccent);
     padding: 0.375rem 0.5625rem;
     margin: 0.1875rem;
+}
+
+.bigPill {
+    padding: 0.625rem 1rem;
+    height: 2.1rem;
+    margin: 0.5rem;
+    font-size: 1.6rem;
+    background-color: var(--backgroundAccent);
+    width: 25rem;
+    max-width: calc(94vw - 2rem);
+}
+
+.bigPill > a, .bigPill > a:visited {
+    color: color-mix(in srgb, var(--textColorPrimary) 95%, var(--backgroundColor) 5%) !important;
+    text-decoration: dotted underline;
+}
+
+.bigPill > a:focus, .bigPill > a:hover {
+    color: color-mix(in srgb, var(--textColorPrimary) 70%, var(--backgroundAccent) 30%) !important;
+    text-decoration: dashed underline;
+}
+
+.bigPill > a:active {
+    color: color-mix(in srgb, var(--textColorPrimary) 30%, var(--backgroundAccent) 70%) !important;
+    text-decoration: double underline;
+}
+
+.bigPill:hover, .bigPill:active {
+    padding: 0.625rem 1rem;
+    margin: 0.5rem;
+}
+
+.projectImage {
+    border-radius: 15px;
+    padding-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.projectInfo {
+    text-align: left;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem;
+    overflow-y: scroll;
+    background-color: var(--backgroundColor);
+    border-radius: 15px;
+    margin-top: 0.75rem;
 }
 
 .swift {
@@ -179,10 +243,15 @@ body {
 
 .java {
     background-color: var(--languageColorJava);
+    border-color: var(--languageColorJava);
 }
 
 .shell {
     background-color: var(--languageColorShell);
+}
+
+.other {
+    background-color: var(--uiElementPrimary);
 }
 
 .nyuPill {
@@ -190,23 +259,73 @@ body {
     color: var(--textColorPrimary);
 }
 
-.nyuPill::before {
+.nyuPill::before, .gitPill::before, .appStorePill::before {
     content: "";
     position: relative;
-    top: 0.3125rem;
     left: -0.2rem;
-    background-image: url("./torch.svg");
-    background-size: 1.525rem;
-    background-repeat: no-repeat;
-    display: inline-block;
     width: 1.4rem;
     height: 1.4rem;
     margin: 0;
-    margin-right: 0.25rem;
+    margin-right: 0.125rem;
+    display: inline-block;
+    background-repeat: no-repeat;
+}
+
+.nyuPill::before {
+    top: 0.3125rem;
+    background-image: url("./torch.svg");
+    background-size: 1.525rem;
 }
 
 .nyuPill::after {
     content: "NYU Tandon '29";
+}
+
+.gitPill {
+    background-color: color-mix(in srgb, var(--gitColor) 85%, var(--textColorPrimary) 15%);
+}
+
+.gitPill::before {
+    background-image: url("./git.svg");
+    background-size: 1.2rem;
+}
+
+.gitPill > a, .appStorePill > a {
+    position: relative;
+    top: -0.5rem;
+}
+
+.appStorePill {
+    background-color: var(--appStoreColor);
+}
+
+.appStorePill::before {
+    background-image: url("./apple.svg");
+    background-size: 1.2rem;
+    margin-right: 0;
+    top: -0.1rem;
+}
+
+.openPill {
+    background-color: var(--uiElementPrimary);
+    color: var(--backgroundColor);
+}
+
+.openPill::before {
+    content: "[↗]";
+}
+
+.ossPill, .oshwPill {
+    background-color: var(--backgroundColor);
+    color: var(--uiElementPrimary);
+}
+
+.ossPill::after {
+    content: "OSS";
+}
+
+.oshwPill::after {
+    content: "OSHW";
 }
 
 a, a:visited {
@@ -235,17 +354,21 @@ a:active {
 }
 
 .bottomToolbar {
-    position: absolute;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: fixed;
     right: 1rem;
     bottom: 1rem;
     z-index: 3;
     transform: translateZ(3);
-    background-color: var(--uiElementPrimary);
+    background-color: #fbf1c7dd;
     width: 2rem;
     height: 2rem;
     padding: 1rem;
     border-radius: 15px;
     transition: ease-in all 0.15s;
+    box-shadow: 0px 0px 0.25rem var(--uiElementPrimary);
+    backdrop-filter: blur(0.25rem);
 }
 
 .bottomToolbar > svg:first-of-type {
@@ -263,7 +386,7 @@ a:active {
 }
 
 .navMenuContent {
-    position: absolute;
+    position: fixed;
     right: 1rem;
     bottom: 1rem;
     visibility: hidden;
@@ -282,7 +405,7 @@ a:active {
     border-bottom-right-radius: 2rem;
     transition: ease-in all 0.15s;
     box-shadow: 0px 0px 0.25rem var(--textColorPrimary);
-    backdrop-filter: blur(0.75rem);
+    backdrop-filter: blur(0.25rem);
 }
 
 .navMenuContent > div {
@@ -307,9 +430,22 @@ a:active {
     width: 2.5rem;
 }
 
+.darkLink, .darkLink:visited {
+    color: var(--backgroundColor);
+    text-decoration: dashed underline;
+}
+
+.darkLink:hover {
+    color: color-mix(in srgb, var(--backgroundColor) 70%, var(--textColorPrimary) 30%);
+}
+
+.darkLink:active {
+    color: color-mix(in srgb, var(--backgroundColor) 30%, var(--textColorPrimary) 70%);
+    text-decoration: solid underline;
+}
+
 .navMenuContent > div > a {
     display: none;
-    color: var(--backgroundColor);
     font-size: 1.5rem;
     margin: 0.75rem 0;
 }
@@ -343,6 +479,10 @@ a:active {
 .container.VStackCenter {
     height: calc(100vh - 3rem);
     min-height: 24rem;
+}
+
+.container.VStackFillCenter {
+    height: 100%;
 }
 
 @media (max-width: 21.5rem) {
@@ -402,11 +542,11 @@ a:active {
 }
 
 @media (orientation: portrait) {
-    .base64Grid {
+    .base64Grid, .projectGrid {
         grid-template-columns: repeat(1, 90vw);
     }
 
-    .toolTitleContainer {
+    .itemTitleContainer {
         width: calc(100% + 2px);
     }
 
@@ -415,8 +555,32 @@ a:active {
         height: 60vw;
     }
 
-    .innerTile {
-        height: calc(0.9 * (60vw - 4rem - 4px));
+    .base64Grid > .ZStack > .innerTile {
+        height: calc(60vw - 2rem);
+    }
+
+    .projectGrid > .ZStack {
+        width: 90vw;
+        height: calc(50vw + (850px / 100vw) * 40vw);
+        min-height: 35rem * (1 + (100vh / 150vw));
+        min-width: 18rem;
+    }
+
+    .projectGrid > .ZStack > .innerTile {
+        height: calc(50vw - 2rem + (850px / 100vw) * 40vw);
+        min-height: 35rem * (1 + (100vh / 150vw));
+    }
+
+    .projectImage {
+        width: calc(90vw - 2rem);
+        min-width: 15rem;
+    }
+
+    .projectInfo {
+        width: calc(90vw - 3rem);
+        min-width: 16rem;
+        height: calc(50vw - 1.9rem - 0.5rem - ((90vw - 2rem) / 1.778) + ((850px / 100vw) * 30vw));
+        min-height: 15rem * (1 + (100vh / 150vw));
     }
 
     .innerTileRow > button, .innerTileRow > textarea, .innerTileRow > p, .innerTileRow > .VStack, .innerTileRow > input, .innerTileRow > img {
@@ -429,11 +593,11 @@ a:active {
 }
 
 @media (orientation: landscape) {
-    .base64Grid {
+    .base64Grid, .projectGrid {
         grid-template-columns: repeat(2, 45vw);
     }
 
-    .toolTitleContainer {
+    .itemTitleContainer {
         width: calc(100% + 2px);
     }
 
@@ -441,9 +605,53 @@ a:active {
         width: calc(45vw - 10px);
         height: 30vw;
     }
+    
+    .base64Grid > .ZStack > .innerTile {
+        height: calc(30vw - 2rem);
+    }
 
-    .innerTile {
-        height: calc(0.9 * (30vw - 4rem - 4px));
+    .projectGrid > .ZStack {
+        width: calc(45vw - 10px);
+        height: calc(13.5vw + ((1500px / 100vw) * 27.5vw));
+        min-height: 30rem * (1 + (100vh / 150vw));
+    }
+
+    .projectGrid > .ZStack > .innerTile {
+        height: calc(13.5vw - 2rem + ((1500px / 100vw) * 27.5vw));
+        min-height: 28rem * (1 + (100vh / 150vw));
+    }
+
+    .projectImage {
+        width: calc(45vw - 10px - 2rem);
+    }
+
+    .projectInfo {
+        width: calc(45vw - 10px - 3rem);
+        height: calc(18vw - 1.9rem - 0.5rem - ((45vw - 10px - 2rem) / 1.778) + ((1500px / 100vw) * 27.5vw));
+    }
+
+    @media (max-width: 950px) {
+        .projectGrid {
+            grid-template-columns: repeat(1, 90vw);
+        }
+
+        .projectGrid > .ZStack {
+            width: 90vw;
+            height: 75vw;
+        }
+
+        .projectGrid > .ZStack > .innerTile {
+            height: calc(75vw - 2rem);
+        }
+
+        .projectImage {
+            width: calc(90vw - 2rem);
+        }
+
+        .projectInfo {
+            width: calc(90vw - 3rem);
+            height: calc(75vw - 1.9rem - 0.5rem - ((90vw - 2rem) / 1.778));
+        }
     }
 
     .innerTileRow > button, .innerTileRow > textarea, .innerTileRow > p, .innerTileRow > .VStack, .innerTileRow > input, .innerTileRow > img {
@@ -455,38 +663,35 @@ a:active {
     }
 
     @media (max-width: 749px) {
-        .bottomToolbar {
+        .bottomToolbar, .navMenuContent {
             top: 2vw;
             right: 2vw;
         }
 
-        .navMenuContent {
-            top: 2vw;
-            right: 2vw;
+        .topDesktop {
+            margin: 2vw 0;
         }
     }
 
     @media (min-width: 750px) and (max-width: 999px) {
-        .bottomToolbar {
+        .bottomToolbar, .navMenuContent {
             top: 3rem;
             right: 3rem;
         }
 
-        .navMenuContent {
-            top: 3rem;
-            right: 3rem;
+        .topDesktop {
+            margin: 3rem 0;
         }
     }
 
     @media (min-width: 1000px) {
-        .bottomToolbar {
+        .bottomToolbar, .navMenuContent {
             top: 5rem;
             right: 5rem;
         }
 
-        .navMenuContent {
-            top: 5rem;
-            right: 5rem;
+        .topDesktop {
+            margin: 5rem 0;
         }
     }
 
@@ -503,6 +708,10 @@ a:active {
 
     .navMenuContent:last-child {
         margin-bottom: 0;
+    }
+
+    .navMenuContent.noScrollDesktop, .bottomToolbar.noScrollDesktop {
+        position: absolute;
     }
 }
 

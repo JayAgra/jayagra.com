@@ -5,6 +5,11 @@ use actix_web::{
 use std::{include_bytes, include_str};
 
 const INDEX_HTML: &str = include_str!("../public/index.html");
+const TOOLS_HTML: &str = include_str!("../public/tools.html");
+const ABOUT_HTML: &str = include_str!("../public/about.html");
+const PROJECTS_HTML: &str = include_str!("../public/projects.html");
+const MISCELLANEOUS_HTML: &str = include_str!("../public/misc.html");
+
 const MINESWEEPER_HTML: &str = include_str!("../public/minesweeper.html");
 const SNAKE_HTML: &str = include_str!("../public/snake.html");
 const BASE64_HTML: &str = include_str!("../public/base64.html");
@@ -30,7 +35,7 @@ pub async fn static_index(/*req: HttpRequest*/) -> HttpResponse {
         443 => {*/
             HttpResponse::Ok()
                 .content_type(ContentType::html())
-                .insert_header(CacheControl(vec![CacheDirective::Public, CacheDirective::MaxAge(23328000u32)]))
+                .insert_header(CacheControl(vec![CacheDirective::Public, CacheDirective::MaxAge(864000u32)]))
                 .body(INDEX_HTML)
         /*}
         _ => {
@@ -40,6 +45,24 @@ pub async fn static_index(/*req: HttpRequest*/) -> HttpResponse {
         }
     } */
 }
+
+pub async fn static_tools() -> HttpResponse {
+    HttpResponse::Ok().content_type(ContentType::html()).body(TOOLS_HTML)
+}
+
+pub async fn static_about() -> HttpResponse {
+    HttpResponse::Ok().content_type(ContentType::html()).body(ABOUT_HTML)
+}
+
+pub async fn static_projects() -> HttpResponse {
+    HttpResponse::Ok().content_type(ContentType::html()).body(PROJECTS_HTML)
+}
+
+pub async fn static_miscellaneous() -> HttpResponse {
+    HttpResponse::Ok().content_type(ContentType::html()).body(MISCELLANEOUS_HTML)
+}
+
+
 
 pub async fn static_minesweeper() -> HttpResponse {
     HttpResponse::Ok().content_type(ContentType::html()).body(MINESWEEPER_HTML)

@@ -58,6 +58,10 @@ async fn main() -> io::Result<()> {
             )
             // html
             .route("/", web::get().to(static_files::static_index))
+            .route("/tools", web::get().to(static_files::static_tools))
+            .route("/about", web::get().to(static_files::static_about))
+            .route("/projects", web::get().to(static_files::static_projects))
+            .route("/misc", web::get().to(static_files::static_miscellaneous))
             .route("/minesweeper", web::get().to(static_files::static_minesweeper))
             .route("/snake", web::get().to(static_files::static_snake))
             .route("/base64", web::get().to(static_files::static_base64))
