@@ -2,27 +2,47 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://jayagra.com/</loc>
-        <lastmod>2026-04-27T09:00:26-04:00</lastmod>
+        <lastmod>2026-04-30T09:00:00-04:00</lastmod>
         <priority>1.0</priority>
     </url>
     <url>
+        <loc>https://jayagra.com/tools</loc>
+        <lastmod>2026-04-30T09:00:00-04:00</lastmod>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://jayagra.com/about</loc>
+        <lastmod>2026-04-30T09:00:00-04:00</lastmod>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://jayagra.com/projects</loc>
+        <lastmod>2026-04-30T09:00:00-04:00</lastmod>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://jayagra.com/misc</loc>
+        <lastmod>2026-04-30T09:00:00-04:00</lastmod>
+        <priority>0.5</priority>
+    </url>
+    <url>
         <loc>https://jayagra.com/base64</loc>
-        <lastmod>2026-04-27T09:00:26-04:00</lastmod>
+        <lastmod>2026-04-30T09:00:00-04:00</lastmod>
     </url>
     <url>
         <loc>https://jayagra.com/minesweeper</loc>
-        <lastmod>2026-02-15T14:00:26-04:00</lastmod>
-    </url>
-    <url>
-        <loc>https://jayagra.com/support</loc>
-        <lastmod>2026-02-15T14:00:26-04:00</lastmod>
+        <lastmod>2026-04-30T09:00:00-04:00</lastmod>
     </url>
     <url>
         <loc>https://jayagra.com/ec</loc>
-        <lastmod>2026-02-15T14:00:26-04:00</lastmod>
+        <lastmod>2026-04-30T09:00:00-04:00</lastmod>
+    </url>
+    <url>
+        <loc>https://jayagra.com/support</loc>
+        <lastmod>2026-04-30T09:00:00-04:00</lastmod>
     </url>
     <url>
         <loc>https://jayagra.com/snake</loc>
-        <lastmod>2026-04-27T09:00:26-04:00</lastmod>
+        <lastmod>2026-04-30T09:00:00-04:00</lastmod>
     </url>
 </urlset>

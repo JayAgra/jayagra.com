@@ -93,6 +93,7 @@ body {
     row-gap: 15px;
     grid-template-columns: repeat(2, 45vw);
     -webkit-column-gap: 10px;
+    grid-auto-flow: dense;
 }
 
 .base64Grid > .ZStack, .projectGrid > .ZStack {
@@ -562,25 +563,25 @@ a:active {
     .projectGrid > .ZStack {
         width: 90vw;
         height: calc(50vw + (850px / 100vw) * 40vw);
-        min-height: 35rem * (1 + (100vh / 150vw));
-        min-width: 18rem;
+        height: auto;
+        min-width: 10rem;
     }
 
     .projectGrid > .ZStack > .innerTile {
-        height: calc(50vw - 2rem + (850px / 100vw) * 40vw);
+        height: auto;
         min-height: 35rem * (1 + (100vh / 150vw));
     }
 
     .projectImage {
         width: calc(90vw - 2rem);
-        min-width: 15rem;
+        /* min-width: 15rem; */
     }
 
     .projectInfo {
         width: calc(90vw - 3rem);
-        min-width: 16rem;
-        height: calc(50vw - 1.9rem - 0.5rem - ((90vw - 2rem) / 1.778) + ((850px / 100vw) * 30vw));
-        min-height: 15rem * (1 + (100vh / 150vw));
+        /* min-width: 16rem; */
+        height: auto;
+        margin-bottom: 0.125rem;
     }
 
     .innerTileRow > button, .innerTileRow > textarea, .innerTileRow > p, .innerTileRow > .VStack, .innerTileRow > input, .innerTileRow > img {
@@ -612,13 +613,15 @@ a:active {
 
     .projectGrid > .ZStack {
         width: calc(45vw - 10px);
-        height: calc(13.5vw + ((1500px / 100vw) * 27.5vw));
-        min-height: 30rem * (1 + (100vh / 150vw));
+        /* height: calc(13.5vw + ((1500px / 100vw) * 27.5vw)); */
+        /* min-height: 30rem * (1 + (100vh / 150vw)); */
+        height: auto;
     }
 
     .projectGrid > .ZStack > .innerTile {
-        height: calc(13.5vw - 2rem + ((1500px / 100vw) * 27.5vw));
-        min-height: 28rem * (1 + (100vh / 150vw));
+        /* height: calc(13.5vw - 2rem + ((1500px / 100vw) * 27.5vw)); */
+        /* min-height: 28rem * (1 + (100vh / 150vw)); */
+        height: auto;
     }
 
     .projectImage {
@@ -627,7 +630,9 @@ a:active {
 
     .projectInfo {
         width: calc(45vw - 10px - 3rem);
-        height: calc(18vw - 1.9rem - 0.5rem - ((45vw - 10px - 2rem) / 1.778) + ((1500px / 100vw) * 27.5vw));
+        /* height: calc(18vw - 1.9rem - 0.5rem - ((45vw - 10px - 2rem) / 1.778) + ((1500px / 100vw) * 27.5vw)); */
+        height: auto;
+        margin-bottom: 0;
     }
 
     @media (max-width: 950px) {
@@ -637,20 +642,25 @@ a:active {
 
         .projectGrid > .ZStack {
             width: 90vw;
-            height: 75vw;
+            height: calc(50vw + (850px / 100vw) * 40vw);
+            height: auto;
         }
 
         .projectGrid > .ZStack > .innerTile {
-            height: calc(75vw - 2rem);
+            height: auto;
+            min-height: 35rem * (1 + (100vh / 150vw));
         }
 
         .projectImage {
             width: calc(90vw - 2rem);
+            min-width: 15rem;
         }
 
         .projectInfo {
             width: calc(90vw - 3rem);
-            height: calc(75vw - 1.9rem - 0.5rem - ((90vw - 2rem) / 1.778));
+            min-width: 16rem;
+            height: auto;
+            margin-bottom: 0;
         }
     }
 
