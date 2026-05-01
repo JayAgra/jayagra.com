@@ -1,0 +1,15 @@
+*.rs                    text diff=rust
+*.toml                  text diff=toml
+Cargo.lock              text linguist-vendored
+*.ico                   binary
+*.jpeg                  binary
+*.png                   binary
+*.svg                   text
+public/ec.html          linguist-vendored
+public/minesweeper.html linguist-vendored
+public/snake.html       linguist-vendored
+public/static/apes/*    linguist-vendored
+public/static/ms/*      linguist-vendored
+public/static/snake/*   linguist-vendored
+public/static/*.js      linguist-vendored
+public/wordle.min.js    linguist-vendored

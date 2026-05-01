@@ -21,7 +21,6 @@ const COOKIES_HTML: &str = include_str!("../public/cookies.html");
 const TOS_HTML: &str = include_str!("../public/tos.html");
 const WORDLE_JS: &str = include_str!("../public/wordle.min.js");
 const SITEMAP_XML: &str = include_str!("../public/sitemap.xml");
-const SITE_WEBMANI: &str = include_str!("../public/site.webmanifest");
 // icons aren't utf8 so it needs include bytes instead
 const ANDROID_CHROME_192: &[u8] = include_bytes!("../public/android-chrome-192x192.png");
 // const ANDROID_CHROME_512: &[u8] = include_bytes!("../public/android-chrome-512x512.png");
@@ -107,10 +106,6 @@ pub async fn static_wordle_js() -> HttpResponse {
 
 pub async fn static_sitemap_xml() -> HttpResponse {
     HttpResponse::Ok().content_type(ContentType::xml()).body(SITEMAP_XML)
-}
-
-pub async fn static_site_webmanifest() -> HttpResponse {
-    HttpResponse::Ok().content_type(ContentType::html()).body(SITE_WEBMANI)
 }
 
 // serve static favicons

@@ -72,7 +72,6 @@ async fn main() -> io::Result<()> {
             .route("/legal/cookies{args}*", web::get().to(static_files::static_cookies))
             .route("/legal/tos{args}*", web::get().to(static_files::static_tos))
             .route("/wordle.min.js", web::get().to(static_files::static_wordle_js))
-            .route("/site.webmanifest", web::get().to(static_files::static_site_webmanifest))
             .route("/sitemap.xml", web::get().to(static_files::static_sitemap_xml))
             .route("/api/gc", web::post().to(gc_interface::great_circle_post))
             .route("/api/gc/{lat_1}/{lon_1}/{lat_2}/{lon_2}", web::get().to(gc_interface::great_circle_get))
