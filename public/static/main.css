@@ -483,7 +483,7 @@ a:active {
     backdrop-filter: blur(0.25rem);
 }
 
-.bottomToolbar > svg:first-of-type {
+.bottomToolbar > img:first-of-type {
     display: unset;
     position: absolute;
     top: unset;
@@ -493,7 +493,7 @@ a:active {
     width: 2.5rem;
 }
 
-.bottomToolbar > svg:last-of-type {
+.bottomToolbar > img:last-of-type {
     display: none;
 }
 
@@ -520,19 +520,15 @@ a:active {
     backdrop-filter: blur(0.25rem);
 }
 
-.navMenuContent > div {
-    margin: 0rem 1rem;
-}
-
 .navCheck:checked + div > .bottomToolbar {
     border-radius: 2rem;
 }
 
-.navCheck:checked + div > .bottomToolbar > svg:first-of-type {
+.navCheck:checked + div > .bottomToolbar > img:first-of-type {
     display: none;
 }
 
-.navCheck:checked + div > .bottomToolbar > svg:last-of-type {
+.navCheck:checked + div > .bottomToolbar > img:last-of-type {
     display: unset;
     position: absolute;
     top: unset;
@@ -556,10 +552,10 @@ a:active {
     text-decoration: solid underline;
 }
 
-.navMenuContent > div > a {
+.navMenuContent > a {
     display: none;
     font-size: 1.5rem;
-    margin: 0.75rem 0;
+    margin: 0.75rem 0.75rem;
 }
 
 .navCheck:checked + div > .navMenuContent {
@@ -568,7 +564,7 @@ a:active {
     transition: ease-in visibility 0.15s;
 }
 
-.navCheck:checked + div > .navMenuContent > div > a {
+.navCheck:checked + div > .navMenuContent > a {
     display: unset;
 }
 
@@ -584,7 +580,7 @@ a:active {
     width: 6rem;
 }
 
-.iconLinkItem > a > svg {
+.iconLinkItem > a > img {
     width: 2.5rem;
 }
 
@@ -604,7 +600,7 @@ a:active {
 }
 
 @media (max-width: 18rem) {
-    .navMenuContent > div > a {
+    .navMenuContent > a {
         font-size: 1rem;
     }
 }
