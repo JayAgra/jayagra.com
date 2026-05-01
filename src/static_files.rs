@@ -13,6 +13,7 @@ const MISCELLANEOUS_HTML: &str = include_str!("../public/misc.html");
 const MINESWEEPER_HTML: &str = include_str!("../public/minesweeper.html");
 const SNAKE_HTML: &str = include_str!("../public/snake.html");
 const BASE64_HTML: &str = include_str!("../public/base64.html");
+const TIMESTAMP_HTML: &str = include_str!("../public/timestamp.html");
 const ENVIRONMENT_CYCLES_HTML: &str = include_str!("../public/ec.html");
 const APP_SUPPORT_HTML: &str = include_str!("../public/support.html");
 const PRIVACY_HTML: &str = include_str!("../public/privacy.html");
@@ -74,6 +75,10 @@ pub async fn static_snake() -> HttpResponse {
 
 pub async fn static_base64() -> HttpResponse {
     HttpResponse::Ok().content_type(ContentType::html()).body(BASE64_HTML)
+}
+
+pub async fn static_timestamp() -> HttpResponse {
+    HttpResponse::Ok().content_type(ContentType::html()).body(TIMESTAMP_HTML)
 }
 
 pub async fn static_environmental_cycles() -> HttpResponse {

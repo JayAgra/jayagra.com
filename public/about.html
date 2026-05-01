@@ -1,13 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>About</title>
-        <link rel="stylesheet" href="static/main.min.css?v=120-00">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Jayen Agrawal - About</title>
+        <meta name="description" content="Jayen Agrawal's about page.">
+        <link rel="shortcut icon" href="/favicon.ico?v=110-01">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=110-01">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=110-01">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=110-01">
+        <link rel="manifest" href="/site.webmanifest?v=110-01">
+        <meta name="msapplication-TileColor" content="#1e1e1f">
+        <meta name="theme-color" content="#1e1e1f">
+        <link rel="stylesheet" href="static/main.css?v=120-02">
+        <meta name="keywords" content="jayagra, jayen agrawal"/>
     </head>
-    <body class="container VStackCenter">
-        <div class="VStack">
-            <h1 class="pageTitle">About</h1>
-            <p>This page is being created. Please check back later.</p>
+    <body>
+        <div class="ZStack">
+            <div class="container VStack justifyCenter topDesktop" style="z-index: 1;" role="main">
+                <h1 class="pageTitle">About</h1>
+                <div class="VStack aboutContainer textLeft">
+                    <div class="HStack">
+                        <span class="aboutProfileImage"></span>
+                        <div class="VStack aboutText">
+                            <h1 class="aboutTitle">Jayen Agrawal</h1>
+                            <a class="aboutEmail" href="mailto:jay@jayagra.com">jay@jayagra.com</a>
+                        </div>
+                    </div>
+                    <div class="VStack aboutContent">
+                        <p>Student at New York University's Tandon School of Engineering pursuing a Bachelor of Science in Computer Science.</p>
+                        <p>7 years of programming experience in 10 languages. 3 years of development in Swift, with 5 published apps and ~5,000 units in 2 years. 5 years of backend including Rust, Java, PHP, and TypeScript/JavaScript.</p>
+                        <p><i>Page is under construction.</i></p>
+                    </div>
+                </div>
+                <small style="position: absolute; bottom: 1rem; font-size: 0.65rem;"><a href="/legal/tos" target="_blank">ToS [↗]</a> <a href="/legal/privacy" target="_blank">Privacy [↗]</a><br>© 2024-2026 Jayen Agrawal.</small>
+            </div>
+            <!--menu--><input class="navCheck"id="navCheck"type="checkbox"><div><div class="VStack navMenuContent"><div class="VStack"><a class="darkLink"href="/">Home</a> <a class="darkLink"href="tools">Tools</a> <a class="darkLink"href="projects">Projects</a> <a class="darkLink"href="misc">Miscellaneous</a></div></div><label class="bottomToolbar"for="navCheck"role="navigation"><svg role="img"viewBox="0 0 24 24"><path d="m4 6h16m-16 6h16m-16 6h16"fill="var(--backgroundColor)"stroke="var(--backgroundColor)"stroke-linecap="round"stroke-linejoin="round"stroke-width="2"/></svg> <svg role="img"viewBox="0 0 24 24"><g fill="var(--backgroundColor)"stroke="var(--backgroundColor)"stroke-linecap="round"stroke-linejoin="round"stroke-width="2"><path d="m6.3431458 6.3431458 11.3137082 11.3137082m-11.6137083-11.0437083 11.3137083 11.3137083"/><path d="m6.05815 17.641858 11.313708-11.313708m-11.0437081 11.613708 11.3137081-11.313708"/></g></svg></label></div>
         </div>
     </body>
 </html>

@@ -65,6 +65,7 @@ async fn main() -> io::Result<()> {
             .route("/minesweeper", web::get().to(static_files::static_minesweeper))
             .route("/snake", web::get().to(static_files::static_snake))
             .route("/base64", web::get().to(static_files::static_base64))
+            .route("/timestamp", web::get().to(static_files::static_timestamp))
             .route("/ec", web::get().to(static_files::static_environmental_cycles))
             .route("/support{args}*", web::get().to(static_files::static_support))
             .route("/legal/privacy{args}*", web::get().to(static_files::static_privacy))

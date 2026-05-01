@@ -67,6 +67,79 @@ body {
     align-items: center;
 }
 
+.spaceBetween {
+    justify-content: space-between !important;
+}
+
+.spaceAround {
+    justify-content: space-around !important;
+}
+
+.textLeft {
+    text-align: left;
+}
+
+.center {
+    align-items: center;
+}
+
+.leftJustify {
+    justify-content: left;
+}
+
+.fullHeight {
+    height: 100%;
+}
+
+.bold {
+    font-weight: 600;
+}
+
+.timestampLower {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    column-gap: 1rem;
+    row-gap: 0.5rem;
+    align-items: start;
+    width: 90%;
+    margin: 0.5rem auto 0;
+    text-align: left;
+}
+
+.timestampLower span:nth-child(even) {
+    justify-self: end;
+    text-align: right;
+}
+
+.timestampLower > .r2 {
+    grid-row: 2;
+}
+
+.timestampLower > .r3 {
+    grid-row: 3;
+}
+
+.timestampUpper, .timestampLower {
+    height: 50%;
+    margin-top: 1rem;
+}
+
+.timestampMargin {
+    margin-left: max(1rem, 1vw);
+}
+
+.timestampUpper > .VStack.textLeft > label {
+    height: 1.25rem;
+    font-weight: 600;
+    margin: 0.25rem 0;
+}
+
+.timestampUpper > .VStack > input, .timestampUpper > .VStack > select {
+    height: 1.25rem;
+    margin: 0.25rem 0;
+}
+
 .projectContent {
     justify-content: flex-start;
     align-items: center;
@@ -83,12 +156,42 @@ body {
     margin: 0;
 }
 
+.aboutProfileImage::before {
+    content: "";
+    display: inline-block;
+    background-image: url("images/d30f6013_s.jpeg");
+    background-repeat: no-repeat;
+    background-size: 8rem;
+    clip-path: circle(50%);
+    width: 8rem;
+    height: 8rem;
+}
+
+.aboutText {
+    position: relative;
+    width: 100%;
+    top: 1rem;
+    left: 2rem;
+    text-align: left;
+}
+
+.aboutTitle {
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+}
+
+.aboutEmail {
+    position: relative;
+    bottom: 2.125rem
+}
+
 .itemGrid {
     display: grid;
     width: 100%;
 }
 
-.base64Grid, .projectGrid {
+.base64Grid, .projectGrid, .timestampGrid {
     column-gap: 10px;
     row-gap: 15px;
     grid-template-columns: repeat(2, 45vw);
@@ -96,7 +199,7 @@ body {
     grid-auto-flow: dense;
 }
 
-.base64Grid > .ZStack, .projectGrid > .ZStack {
+.base64Grid > .ZStack, .projectGrid > .ZStack, .timestampGrid > .ZStack {
     background-color: var(--backgroundAccent);
     border: 2px solid var(--uiElementPrimary);
     border-radius: 15px;
@@ -126,6 +229,14 @@ body {
 
 .innerTileRow {
     justify-content: space-evenly;
+}
+
+.innerTileRow.spaceBetween {
+    margin: max(0.75vw, 0.75rem) 0;
+}
+
+.innerTileRow.spaceBetween > * {
+    margin: 0;
 }
 
 .innerTile {
@@ -331,17 +442,17 @@ body {
 
 a, a:visited {
     color: var(--linkColor);
-    text-decoration: none;
+    text-decoration: underline dotted;
 }
 
 a:focus, a:hover {
     color: color-mix(in srgb, var(--linkColor) 25%, var(--textColorPrimary) 75%);
-    text-decoration: underline dotted;
+    text-decoration: underline dashed;
 }
 
 a:active {
-    color: var(--textColorPrimary);
-    text-decoration: underline dashed;
+    color: color-mix(in srgb, var(--linkColor) 75%, var(--textColorPrimary) 25%);
+    text-decoration: underline wavy;
 }
 
 .endMargin {
@@ -543,7 +654,7 @@ a:active {
 }
 
 @media (orientation: portrait) {
-    .base64Grid, .projectGrid {
+    .base64Grid, .projectGrid, .timestampGrid {
         grid-template-columns: repeat(1, 90vw);
     }
 
@@ -551,12 +662,12 @@ a:active {
         width: calc(100% + 2px);
     }
 
-    .base64Grid > .ZStack {
+    .base64Grid > .ZStack, .timestampGrid > .ZStack {
         width: 90vw;
         height: 60vw;
     }
 
-    .base64Grid > .ZStack > .innerTile {
+    .base64Grid > .ZStack > .innerTile, .timestampGrid > .ZStack > .innerTile {
         height: calc(60vw - 2rem);
     }
 
@@ -584,17 +695,25 @@ a:active {
         margin-bottom: 0.125rem;
     }
 
-    .innerTileRow > button, .innerTileRow > textarea, .innerTileRow > p, .innerTileRow > .VStack, .innerTileRow > input, .innerTileRow > img {
+    .innerTileRow > * {
         width: calc(0.4 * 90vw);
     }
 
     .innerTileRow > textarea {
         height: calc(0.7 * (60vw - 10rem - 4px));
     }
+
+    .aboutContainer {
+        width: 95vw;
+    }
+
+    .aboutContent {
+        margin: 1rem;
+    }
 }
 
 @media (orientation: landscape) {
-    .base64Grid, .projectGrid {
+    .base64Grid, .projectGrid, .timestampGrid {
         grid-template-columns: repeat(2, 45vw);
     }
 
@@ -602,12 +721,12 @@ a:active {
         width: calc(100% + 2px);
     }
 
-    .base64Grid > .ZStack {
+    .base64Grid > .ZStack, .timestampGrid > .ZStack {
         width: calc(45vw - 10px);
         height: 30vw;
     }
     
-    .base64Grid > .ZStack > .innerTile {
+    .base64Grid > .ZStack > .innerTile, .timestampGrid > .ZStack > .innerTile {
         height: calc(30vw - 2rem);
     }
 
@@ -664,7 +783,7 @@ a:active {
         }
     }
 
-    .innerTileRow > button, .innerTileRow > textarea, .innerTileRow > p, .innerTileRow > .VStack, .innerTileRow > input, .innerTileRow > img {
+    .innerTileRow > * {
         width: calc(0.4 * (45vw - 10px));
     }
 
@@ -722,6 +841,15 @@ a:active {
 
     .navMenuContent.noScrollDesktop, .bottomToolbar.noScrollDesktop {
         position: absolute;
+    }
+
+    .aboutContainer {
+        width: 70vw;
+    }
+
+    .aboutContent {
+        margin-left: 10rem;
+        margin-right: 2rem;
     }
 }
 
