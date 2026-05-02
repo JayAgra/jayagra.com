@@ -120,9 +120,9 @@ function run(operation: string) {
         case "parseTimestamp": {
             const strings = printDate(parseTimestamp(Number(timestampInput.value)));
 
-            timestampOutGmt.innerText = strings.gmt;
-            timestampOutLocal.innerText = strings.local;
-            timestampOutRelative.innerText = strings.relative;
+            if (timestampOutGmt.innerText != strings.gmt) timestampOutGmt.innerText = strings.gmt;
+            if (timestampOutLocal.innerText != strings.local) timestampOutLocal.innerText = strings.local;
+            if (timestampOutRelative.innerText != strings.relative) timestampOutRelative.innerText = strings.relative;
 
             break;
         }
@@ -132,8 +132,8 @@ function run(operation: string) {
 
             const strings = printTimestamp(createTimestamp(new Date(dateTime.value), timeZone.value, "ms"));
 
-            timestampOutStamp.innerText = String(strings.milliseconds);
-            timestampOutSecStamp.innerText = String(strings.seconds);
+            if (timestampOutStamp.innerText != String(strings.milliseconds)) timestampOutStamp.innerText = String(strings.milliseconds);
+            if (timestampOutSecStamp.innerText != String(strings.seconds)) timestampOutSecStamp.innerText = String(strings.seconds);
 
             break;
         }
@@ -141,7 +141,7 @@ function run(operation: string) {
         case "parseOffset": {
             const strings = readableOffset(parseOffset(Number(offsetInput.value), offsetInUnit.value));
 
-            offsetOutString.innerText = strings;
+            if (offsetOutString.innerText = strings) offsetOutString.innerText = strings;
 
             break;
         }
@@ -158,8 +158,8 @@ function run(operation: string) {
                 )
             );
 
-            offsetOutStamp.innerText = String(strings.milliseconds);
-            offsetOutOtherStamp.innerText = String(strings.seconds);
+            if (offsetOutStamp.innerText = String(strings.milliseconds)) offsetOutStamp.innerText = String(strings.milliseconds);
+            if (offsetOutOtherStamp.innerText = String(strings.seconds)) offsetOutOtherStamp.innerText = String(strings.seconds);
 
             break;
         }
