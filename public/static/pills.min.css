@@ -1,0 +1,1 @@
+.pill{padding:0.3125rem 0.5rem;border-radius:15px;height:1.15rem;color:var(--backgroundColor);margin:0.25rem;transition:ease-in all 0.1s}.pill:active,.pill:hover{box-shadow:0.15rem 0.15rem 0.75rem var(--backgroundAccent);padding:0.375rem 0.5625rem;margin:0.1875rem}

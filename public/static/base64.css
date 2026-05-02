@@ -1,0 +1,49 @@
+.base64Grid {
+    column-gap: 10px;
+    row-gap: 15px;
+    grid-template-columns: repeat(2, 45vw);
+    -webkit-column-gap: 10px;
+    grid-auto-flow: dense;
+}
+
+.base64Grid > .ZStack {
+    background-color: var(--backgroundAccent);
+    border: 2px solid var(--uiElementPrimary);
+    border-radius: 15px;
+}
+
+@media (orientation: portrait) {
+    .base64Grid {
+        grid-template-columns: repeat(1, 90vw);
+    }
+
+    .base64Grid > .ZStack {
+        width: 90vw;
+        height: 60vw;
+        min-width: 256px;
+    }
+
+    .base64Grid > .ZStack > .innerTile {
+        height: calc(60vw - 2rem);
+    }
+
+    .scrollFooter {
+        top: 2rem;
+        margin-bottom: 3.5rem;
+    }
+}
+
+@media (orientation: landscape) {
+    .base64Grid {
+        grid-template-columns: repeat(2, 45vw);
+    }
+
+    .base64Grid > .ZStack {
+        width: calc(45vw - 10px);
+        height: 30vw;
+    }
+    
+    .base64Grid > .ZStack > .innerTile {
+        height: calc(30vw - 2rem);
+    }
+}

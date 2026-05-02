@@ -1,0 +1,153 @@
+:root {
+    --languageColorSwift: #f05138;
+    --languageColorRust: #dea584;
+    --languageColorTypescript: #3178c6;
+    --languageColorCLangs: #f34b7d;
+    --languageColorJava: #ff9725;
+    --languageColorShell: #89e051;
+    --nyuColor: #7e0acb;
+    --gitColor: #f03c2e;
+    --appStoreColor: #01abf0;
+}
+
+.languageList {
+    font-size: 0.9rem;
+    margin: 0.3rem 0;
+    /* height: 1.9rem; */
+}
+
+.centerWrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.swift {
+    background-color: var(--languageColorSwift);
+}
+
+.rust {
+    background-color: var(--languageColorRust);
+}
+
+.typescript {
+    background-color: color-mix(in srgb, var(--languageColorTypescript) 80%, var(--textColorPrimary) 20%);
+}
+
+.cLangs {
+    background-color: var(--languageColorCLangs);
+}
+
+.java {
+    background-color: var(--languageColorJava);
+    border-color: var(--languageColorJava);
+}
+
+.shell {
+    background-color: var(--languageColorShell);
+}
+
+.other {
+    background-color: var(--uiElementPrimary);
+}
+
+.nyuPill {
+    background-color: var(--nyuColor);
+    color: var(--textColorPrimary);
+}
+
+.nyuPill::before, .gitPill::before, .appStorePill::before {
+    content: "";
+    position: relative;
+    left: -0.2rem;
+    width: 1.4rem;
+    height: 1.4rem;
+    margin: 0;
+    margin-right: 0.125rem;
+    display: inline-block;
+    background-repeat: no-repeat;
+}
+
+.nyuPill::before {
+    top: 0.3125rem;
+    background-image: url("./torch.svg");
+    background-size: 1.525rem;
+}
+
+.nyuPill::after {
+    content: "NYU Tandon '29";
+}
+
+.gitPill {
+    background-color: color-mix(in srgb, var(--gitColor) 85%, var(--textColorPrimary) 15%);
+}
+
+.gitPill::before {
+    background-image: url("./git.svg");
+    background-size: 1.2rem;
+}
+
+.gitPill > a, .appStorePill > a {
+    position: relative;
+    top: -0.5rem;
+}
+
+.appStorePill {
+    background-color: var(--appStoreColor);
+}
+
+.appStorePill::before {
+    background-image: url("./apple.svg");
+    background-size: 1.2rem;
+    margin-right: 0;
+    top: -0.1rem;
+}
+
+.openPill {
+    background-color: var(--uiElementPrimary);
+    color: var(--backgroundColor);
+}
+
+.openPill::before {
+    content: "[↗]";
+}
+
+.ossPill, .oshwPill {
+    background-color: var(--backgroundColor);
+    color: var(--uiElementPrimary);
+}
+
+.ossPill::after {
+    content: "OSS";
+}
+
+.oshwPill::after {
+    content: "OSHW";
+}
+
+@media (max-width: 15rem) {
+    .nyuPill::after {
+        content: "NYU '29";
+    }
+}
+
+@media (max-width: 10rem) {
+    .nyuPill::before {
+        content: "";
+        background: none;
+        width: 0;
+        left: 0;
+    }
+}
+
+@media (max-width: 8rem) {
+    .nyuPill::after {
+        content: "NYU";
+    }
+}
+
+@media (max-width: 7.5rem) {
+    .languageList:last-of-type {
+        margin-top: 6.975rem !important;
+    }
+}

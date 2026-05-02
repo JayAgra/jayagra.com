@@ -1,0 +1,56 @@
+.itemGrid {
+    display: grid;
+    width: 100%;
+}
+
+.itemTitleContainer {
+    position: relative;
+    top: calc(-1rem - 3px);
+    left: -1px;
+    height: 1.5rem;
+    border: 2px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background-color: var(--uiElementPrimary);
+}
+
+.innerTileRow {
+    justify-content: space-evenly;
+}
+
+.innerTile {
+    position: relative;
+    top: -1rem;
+}
+
+.innerTileRow > p {
+    text-align: left;
+}
+
+@media (orientation: portrait) {
+    .itemTitleContainer {
+        width: calc(100% + 2px);
+    }
+
+    .innerTileRow > * {
+        width: calc(0.4 * 90vw);
+    }
+
+    .innerTileRow > textarea {
+        height: calc(0.7 * (60vw - 10rem - 4px));
+    }
+}
+
+@media (orientation: landscape) {
+    .itemTitleContainer {
+        width: calc(100% + 2px);
+    }
+
+    .innerTileRow > * {
+        width: calc(0.4 * (45vw - 10px));
+    }
+
+    .innerTileRow > textarea {
+        height: calc(0.7 * (30vw - 10rem - 4px));
+    }
+}

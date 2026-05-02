@@ -1,0 +1,57 @@
+.bigPill {
+    padding: 0.625rem 1rem;
+    height: 2.1rem;
+    margin: 0.5rem;
+    font-size: 1.6rem;
+    background-color: var(--backgroundAccent);
+    width: 25rem;
+    max-width: calc(94vw - 2rem);
+}
+
+.bigPill > a, .bigPill > a:visited {
+    color: color-mix(in srgb, var(--textColorPrimary) 95%, var(--backgroundColor) 5%) !important;
+    text-decoration: dotted underline;
+}
+
+.bigPill > a:focus, .bigPill > a:hover {
+    color: color-mix(in srgb, var(--textColorPrimary) 70%, var(--backgroundAccent) 30%) !important;
+    text-decoration: dashed underline;
+}
+
+.bigPill > a:active {
+    color: color-mix(in srgb, var(--textColorPrimary) 30%, var(--backgroundAccent) 70%) !important;
+    text-decoration: dotted underline;
+}
+
+.bigPill:hover, .bigPill:active {
+    padding: 0.625rem 1rem;
+    margin: 0.5rem;
+}
+
+@media (max-width: 18rem) {
+    .bigPill {
+        font-size: 1rem;
+        padding: 0.390625rem 0.625rem;
+        height: 1.3125rem;
+        margin: 0.3125rem;
+    }
+
+    .bigPill:hover {
+        padding: 0.390625rem 0.625rem;
+        height: 1.3125rem;
+        margin: 0.3125rem;
+    }
+}
+
+@media (max-width: 15rem) {
+    .bigPill {
+        padding: 0;
+        background-color: transparent;
+        text-align: left;
+    }
+
+    .bigPill:hover {
+        padding: 0;
+        box-shadow: none;
+    }
+}

@@ -1,0 +1,123 @@
+.timestampGrid {
+    column-gap: 10px;
+    row-gap: 15px;
+    grid-template-columns: repeat(2, 45vw);
+    -webkit-column-gap: 10px;
+    grid-auto-flow: dense;
+}
+
+.timestampLower {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    column-gap: 1rem;
+    row-gap: 0.5rem;
+    align-items: start;
+    width: 90%;
+    margin: 0.5rem auto 0;
+    text-align: left;
+}
+
+.timestampLower span:nth-child(even) {
+    justify-self: end;
+    text-align: right;
+}
+
+.timestampLower > .r2 {
+    grid-row: 2;
+}
+
+.timestampLower > .r3 {
+    grid-row: 3;
+}
+
+.timestampGrid > .ZStack {
+    background-color: var(--backgroundAccent);
+    border: 2px solid var(--uiElementPrimary);
+    border-radius: 15px;
+}
+
+.timestampUpper {
+    align-items: center;
+}
+
+.timestampUpper, .timestampLower {
+    height: 50%;
+    margin-top: 1rem;
+}
+
+.timestampMargin {
+    margin-left: max(1rem, 1vw);
+}
+
+.timestampUpper > .VStack.textLeft > label {
+    height: 1.25rem;
+    font-weight: 600;
+    margin: 0.25rem 0;
+}
+
+.timestampUpper > .VStack > input, .timestampUpper > .VStack > select {
+    height: 1.25rem;
+    margin: 0.25rem 0;
+}
+
+.fullHeight {
+    height: 100%;
+}
+
+.bold {
+    font-weight: 600;
+}
+
+.textLeft {
+    text-align: left;
+}
+
+@media (orientation: portrait) {
+    .timestampGrid {
+        grid-template-columns: repeat(1, 90vw);
+    }
+
+    .itemTitleContainer {
+        width: calc(100% + 2px);
+    }
+
+    .timestampGrid > .ZStack {
+        width: 90vw;
+        height: 60vw;
+        min-width: 256px;
+    }
+
+    .timestampGrid > .ZStack > .innerTile {
+        height: calc(60vw - 2rem);
+    }
+
+    .timestampGrid > .ZStack {
+        height: 60vw;
+        min-height: 400px;
+    }
+
+    .timestampGrid > .ZStack > .innerTile {
+        height: calc(60vw - 2rem);
+        min-height: calc(400px - 2rem);
+    }
+}
+
+@media (orientation: landscape) {
+    .timestampGrid {
+        grid-template-columns: repeat(2, 45vw);
+    }
+
+    .itemTitleContainer {
+        width: calc(100% + 2px);
+    }
+
+    .timestampGrid > .ZStack {
+        width: calc(45vw - 10px);
+        height: 30vw;
+    }
+    
+    .timestampGrid > .ZStack > .innerTile {
+        height: calc(30vw - 2rem);
+    }
+}
