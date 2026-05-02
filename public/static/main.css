@@ -593,6 +593,19 @@ a:active {
     height: 100%;
 }
 
+.footer {
+    position: absolute;
+    bottom: 1rem;
+    font-size: 0.65rem;
+}
+
+@media (max-height: 400px) {
+    .footer {
+        position: unset;
+        margin-top: 1rem;
+    }
+}
+
 @media (max-width: 21.5rem) {
     .languageList:last-of-type {
         margin-top: 2.325rem !important;
