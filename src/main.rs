@@ -1,8 +1,8 @@
 use actix_files::NamedFile;
 use actix_governor::{Governor, GovernorConfigBuilder};
-use actix_web::{middleware::{self, DefaultHeaders}, web, App, HttpServer, HttpRequest, Result};
+use actix_web::{App, Error as ActixError, HttpRequest, HttpResponse, HttpServer, Result, error::{ErrorBadRequest, ErrorInternalServerError}, middleware::{self, DefaultHeaders}, web, mime};
 use actix_web_static_files::ResourceFiles;
-use std::{env, io, path::PathBuf};
+use std::{env, io, path::PathBuf, str::FromStr};
 
 mod resources;
 mod gc;
@@ -15,6 +15,83 @@ async fn static_ish(req: HttpRequest) -> Result<NamedFile> {
     Ok(NamedFile::open(path)?)
 }
 
+async fn get_public_key(req: HttpRequest) -> Result<HttpResponse, ActixError> {
+    let requested_type: &str =
+        req.match_info().get("key_type")
+            .ok_or_else(|| ErrorBadRequest("Type parameter malformed"))
+            .map_err(|_| {
+                ErrorBadRequest("Type parameter cannot be processed")
+            })?;
+    
+    let requested: usize = 
+        req.match_info().get("id")
+            .ok_or_else(|| ErrorBadRequest("Invalid object requested"))
+            .and_then(|s| s.parse::<usize>().map_err(|_| {
+                ErrorBadRequest("Malformed object identifier provided")
+            }))?;
+
+    if requested_type == "s_mime" {
+        let supported: String =
+            env::var("S_MIME").ok()
+                .ok_or_else(|| ErrorBadRequest("Server config error"))?;
+                
+        let list: Vec<&str> = supported.split(",").collect::<Vec<&str>>();
+        
+        if requested >= list.len() {
+            return Err(ErrorBadRequest("Requested certificate does not exist"))
+        }
+
+        let path: PathBuf = 
+            ("keys/".to_owned() + list[requested]).parse::<PathBuf>()
+                .map_err(|_| {
+                    ErrorInternalServerError("Error finding requested certificate")
+                })?;
+
+        let response = NamedFile::open(path)
+            .map_err(|_| {
+                ErrorInternalServerError("Error reading requested certificate")
+            })?
+            .set_content_type(
+                mime::Mime::from_str("application/pkix-cert")
+                .unwrap_or(mime::APPLICATION_OCTET_STREAM)
+            )
+            .into_response(&req);
+
+
+        Ok(response)
+    } else if requested_type == "pgp" {
+        let supported: String =
+            env::var("PGP").ok()
+                .ok_or_else(|| ErrorBadRequest("Server config error"))?;
+                
+        let list: Vec<&str> = supported.split(",").collect::<Vec<&str>>();
+        
+        if requested >= list.len() {
+            return Err(ErrorBadRequest("Requested key does not exist"))
+        }
+
+        let path: PathBuf = 
+            ("keys/".to_owned() + list[requested]).parse::<PathBuf>()
+                .map_err(|_| {
+                    ErrorInternalServerError("Error finding requested key")
+                })?;
+
+        let response = NamedFile::open(path)
+            .map_err(|_| {
+                ErrorInternalServerError("Error reading requested key")
+            })?
+            .set_content_type(
+                mime::Mime::from_str("application/pgp")
+                .unwrap_or(mime::APPLICATION_OCTET_STREAM)
+            )
+            .into_response(&req);
+
+        Ok(response)
+    } else {
+        Err(ErrorBadRequest("Invalid type parameter"))
+    }
+}
+
 #[actix_web::main]
 async fn main() -> io::Result<()> {
     // ratelimiting with governor
@@ -23,6 +100,8 @@ async fn main() -> io::Result<()> {
         .requests_per_hour(10000000)
         .finish()
         .unwrap();
+
+    dotenvy::dotenv().ok();
 
     // config done. now, create the new HttpServer
     log::info!("[OK] starting jayagra.com on port 8080");
@@ -51,8 +130,9 @@ async fn main() -> io::Result<()> {
             .route("/snake", web::get().to(resources::static_snake))
             .route("/base64", web::get().to(resources::static_base64))
             .route("/timestamp", web::get().to(resources::static_timestamp))
-            .route("/ec", web::get().to(resources::static_environmental_cycles))
+            .route("/keys", web::get().to(resources::static_keys))
             .route("/support{args}*", web::get().to(resources::static_support))
+            .route("/ec", web::get().to(resources::static_environmental_cycles))
             .route("/legal/privacy{args}*", web::get().to(resources::static_privacy))
             .route("/legal/cookies{args}*", web::get().to(resources::static_cookies))
             .route("/legal/tos{args}*", web::get().to(resources::static_tos))
@@ -70,6 +150,7 @@ async fn main() -> io::Result<()> {
             .service(ResourceFiles::new("/static", generated).do_not_resolve_defaults())
             // other shit
             .route("/static-ish/{filename}", web::get().to(static_ish))
+            .route("/keys/{key_type}/{id}", web::get().to(get_public_key))
     })
     .bind("0.0.0.0:8080")?
     .workers(8)

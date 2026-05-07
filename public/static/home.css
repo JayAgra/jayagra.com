@@ -1,3 +1,7 @@
+.container {
+    height: 100vh;
+}
+
 .paragraphCaption {
     margin: 0;
 }

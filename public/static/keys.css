@@ -1,0 +1,29 @@
+.projectGrid > .ZStack {
+    min-width: 24rem;
+    min-height: unset;
+    padding-bottom: 0;
+}
+
+.projectGrid > .ZStack > .innerTile {
+    padding: 0 1rem;
+}
+
+.projectGrid > .ZStack > .innerTile > p {
+    text-align: left;
+    font-family: monospace;
+}
+
+.projectGrid > .ZStack:nth-of-type(even) > .innerTile > p {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.projectGrid > .ZStack:nth-of-type(even) > .innerTile > p:first-of-type {
+    margin-top: 1rem;
+}
+
+.projectGrid > .ZStack:nth-of-type(even) > .innerTile > p:nth-of-type(even) {
+    margin-left: 2rem !important;
+    margin-top: 0 !important;
+    word-break: break-all;
+}

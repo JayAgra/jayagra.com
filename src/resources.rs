@@ -9,13 +9,14 @@ const TOOLS_HTML: &str = include_str!("../public/tools.html");
 const ABOUT_HTML: &str = include_str!("../public/about.html");
 const PROJECTS_HTML: &str = include_str!("../public/projects.html");
 const MISCELLANEOUS_HTML: &str = include_str!("../public/misc.html");
+const BASE64_HTML: &str = include_str!("../public/base64.html");
+const TIMESTAMP_HTML: &str = include_str!("../public/timestamp.html");
+const KEYS_HTML: &str = include_str!("../public/keys.html");
+const APP_SUPPORT_HTML: &str = include_str!("../public/support.html");
 
 const MINESWEEPER_HTML: &str = include_str!("../public/minesweeper.html");
 const SNAKE_HTML: &str = include_str!("../public/snake.html");
-const BASE64_HTML: &str = include_str!("../public/base64.html");
-const TIMESTAMP_HTML: &str = include_str!("../public/timestamp.html");
 const ENVIRONMENT_CYCLES_HTML: &str = include_str!("../public/ec.html");
-const APP_SUPPORT_HTML: &str = include_str!("../public/support.html");
 const PRIVACY_HTML: &str = include_str!("../public/privacy.html");
 const COOKIES_HTML: &str = include_str!("../public/cookies.html");
 const TOS_HTML: &str = include_str!("../public/tos.html");
@@ -62,6 +63,21 @@ pub async fn static_miscellaneous() -> HttpResponse {
     HttpResponse::Ok().content_type(ContentType::html()).body(MISCELLANEOUS_HTML)
 }
 
+pub async fn static_base64() -> HttpResponse {
+    HttpResponse::Ok().content_type(ContentType::html()).body(BASE64_HTML)
+}
+
+pub async fn static_timestamp() -> HttpResponse {
+    HttpResponse::Ok().content_type(ContentType::html()).body(TIMESTAMP_HTML)
+}
+
+pub async fn static_keys() -> HttpResponse {
+    HttpResponse::Ok().content_type(ContentType::html()).body(KEYS_HTML)
+}
+
+pub async fn static_support() -> HttpResponse {
+    HttpResponse::Ok().content_type(ContentType::html()).body(APP_SUPPORT_HTML)
+}
 
 
 pub async fn static_minesweeper() -> HttpResponse {
@@ -72,20 +88,8 @@ pub async fn static_snake() -> HttpResponse {
     HttpResponse::Ok().content_type(ContentType::html()).body(SNAKE_HTML)
 }
 
-pub async fn static_base64() -> HttpResponse {
-    HttpResponse::Ok().content_type(ContentType::html()).body(BASE64_HTML)
-}
-
-pub async fn static_timestamp() -> HttpResponse {
-    HttpResponse::Ok().content_type(ContentType::html()).body(TIMESTAMP_HTML)
-}
-
 pub async fn static_environmental_cycles() -> HttpResponse {
     HttpResponse::Ok().content_type(ContentType::html()).body(ENVIRONMENT_CYCLES_HTML)
-}
-
-pub async fn static_support() -> HttpResponse {
-    HttpResponse::Ok().content_type(ContentType::html()).body(APP_SUPPORT_HTML)
 }
 
 pub async fn static_privacy() -> HttpResponse {

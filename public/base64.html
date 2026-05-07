@@ -13,107 +13,103 @@
         <meta name="theme-color" content="#1e1e1f">
         <meta content="#1e1e1f" name="theme-color"/>
     </head>
-    <body>
-        <div class="container endMargin">
-            <div class="VStack">
-                <h1 class="pageTitle">base64 Tools</h1>
-                <div class="itemGrid base64Grid endMargin">
-                    <div class="ZStack">
-                        <div class="toolTitle">String to base64</div>
-                        <div class="VStack innerTile">
-                            <div class="HStack innerTileRow"><p>Input:</p><p>Output:</p></div>
-                            <div class="HStack innerTileRow">
-                                <textarea id="base64strR" name="base64strR" placeholder="String"></textarea>
-                                <textarea id="outputBase64R" name="outputBase64R" readonly></textarea>
-                            </div>
-                            <div class="HStack innerTileRow">
-                                <button class="innerTileRowButton" onclick="convertTextR()" type="button">Encode</button>
-                                <button class="innerTileRowButton" onclick="copyContentOf('outputBase64R')" type="button">Copy</button>
-                            </div>
-                        </div>
+    <body class="container endMargin VStack">
+        <h1 class="pageTitle">base64 Tools</h1>
+        <div class="itemGrid base64Grid endMargin justifyCenter">
+            <div class="ZStack">
+                <div class="toolTitle">String to base64</div>
+                <div class="VStack innerTile">
+                    <div class="HStack innerTileRow"><p>Input:</p><p>Output:</p></div>
+                    <div class="HStack innerTileRow">
+                        <textarea id="base64strR" name="base64strR" placeholder="String"></textarea>
+                        <textarea id="outputBase64R" name="outputBase64R" readonly></textarea>
                     </div>
-                    <div class="ZStack">
-                        <div class="toolTitle">base64 to String</div>
-                        <div class="VStack innerTile">
-                            <div class="HStack innerTileRow"><p>Input:</p><p>Output:</p></div>
-                            <div class="HStack innerTileRow">
-                                <textarea id="base64str" name="base64str" placeholder="base64"></textarea>
-                                <textarea id="outputBase64" name="outputBase64" readonly></textarea>
-                            </div>
-                            <div class="HStack innerTileRow">
-                                <button class="innerTileRowButton" onclick="convertText()" type="button">Decode</button>
-                                <button class="innerTileRowButton" onclick="copyContentOf('outputBase64')" type="button">Copy</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ZStack">
-                        <div class="toolTitle">Image to base64</div>
-                        <div class="VStack innerTile">
-                            <div class="HStack innerTileRow"><p>Input:</p><p>Output:</p></div>
-                            <div class="HStack innerTileRow">
-                                <input id="imageUpload" accept="image/*" class="imageUpload" style="text-align: center" type="file"/>
-                                <textarea id="outputBase64URL" readonly></textarea>
-                            </div>
-                            <div class="HStack innerTileRow">
-                                <button class="innerTileRowButton" onclick="convertImage()" type="button">Encode</button>
-                                <button class="innerTileRowButton" onclick="copyContentOf('outputBase64URL')" type="button" id="copyURLButton">Copy</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ZStack">
-                        <div class="toolTitle">base64 to Image</div>
-                        <div class="VStack innerTile">
-                            <div class="HStack innerTileRow"><p>Input:</p><p>Output:</p></div>
-                            <div class="HStack innerTileRow">
-                                <textarea id="inputBase64URL"></textarea>
-                                <img src="" id="outputImage">
-                            </div>
-                            <div class="HStack innerTileRow">
-                                <button class="nButton" onclick="convertToImage()" type="button">Decode</button>
-                                <button class="nButton" onclick="downloadImage()" type="button" id="downloadImage">Download</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ZStack">
-                        <div class="toolTitle">Credential Encoder</div>
-                        <div class="VStack innerTile">
-                            <div class="HStack innerTileRow"><p>Input:</p><p>Output:</p></div>
-                            <div class="HStack innerTileRow">
-                                <div class="VStack">
-                                    <input id="in_username" name="username" placeholder="username"/>
-                                    <input id="in_password" name="password" placeholder="password"/>
-                                </div>
-                                <textarea id="cred_output" readonly placeholder="Output" type="text"></textarea>
-                            </div>
-                            <div class="HStack innerTileRow">
-                                <button class="innerTileRowButton" onclick="encodeCred()" type="button">Encode</button>
-                                <button class="innerTileRowButton" onclick="copyContentOf('cred_output')" type="button" id="copyb64CredButton">Copy</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ZStack">
-                        <div class="toolTitle">Credential Decoder</div>
-                        <div class="VStack innerTile">
-                            <div class="HStack innerTileRow"><p>Input:</p><p>Output:</p></div>
-                            <div class="HStack innerTileRow">
-                                <textarea id="cred_input" placeholder="Input" type="text"></textarea>
-                                <div class="VStack">
-                                    <input id="out_username" name="username" placeholder="username"/>
-                                    <input id="out_password" name="password" placeholder="password"/>
-                                </div>
-                            </div>
-                            <div class="HStack innerTileRow">
-                                <button class="innerTileRowButton" onclick="decodeCred()" type="button" id="">Decode</button>
-                                <button class="innerTileRowButton" onclick="copyContentOf('out_password')" type="button">Copy Password</button>
-                            </div>
-                        </div>
+                    <div class="HStack innerTileRow">
+                        <button class="innerTileRowButton" onclick="convertTextR()" type="button">Encode</button>
+                        <button class="innerTileRowButton" onclick="copyContentOf('outputBase64R')" type="button">Copy</button>
                     </div>
                 </div>
-                <small>See the <a href="https://github.com/JayAgra/jayagra.com" target="_blank">code [↗]</a>.</small>
-                <small><a href="/legal/tos" target="_blank">ToS [↗]</a> <a href="/legal/privacy" target="_blank">Privacy [↗]</a></small>
-                <small>Copyright © 2024-2026 Jayen Agrawal. All rights reserved.</small>
+            </div>
+            <div class="ZStack">
+                <div class="toolTitle">base64 to String</div>
+                <div class="VStack innerTile">
+                    <div class="HStack innerTileRow"><p>Input:</p><p>Output:</p></div>
+                    <div class="HStack innerTileRow">
+                        <textarea id="base64str" name="base64str" placeholder="base64"></textarea>
+                        <textarea id="outputBase64" name="outputBase64" readonly></textarea>
+                    </div>
+                    <div class="HStack innerTileRow">
+                        <button class="innerTileRowButton" onclick="convertText()" type="button">Decode</button>
+                        <button class="innerTileRowButton" onclick="copyContentOf('outputBase64')" type="button">Copy</button>
+                    </div>
+                </div>
+            </div>
+            <div class="ZStack">
+                <div class="toolTitle">Image to base64</div>
+                <div class="VStack innerTile">
+                    <div class="HStack innerTileRow"><p>Input:</p><p>Output:</p></div>
+                    <div class="HStack innerTileRow">
+                        <input id="imageUpload" accept="image/*" class="imageUpload" style="text-align: center" type="file"/>
+                        <textarea id="outputBase64URL" readonly></textarea>
+                    </div>
+                    <div class="HStack innerTileRow">
+                        <button class="innerTileRowButton" onclick="convertImage()" type="button">Encode</button>
+                        <button class="innerTileRowButton" onclick="copyContentOf('outputBase64URL')" type="button" id="copyURLButton">Copy</button>
+                    </div>
+                </div>
+            </div>
+            <div class="ZStack">
+                <div class="toolTitle">base64 to Image</div>
+                <div class="VStack innerTile">
+                    <div class="HStack innerTileRow"><p>Input:</p><p>Output:</p></div>
+                    <div class="HStack innerTileRow">
+                        <textarea id="inputBase64URL"></textarea>
+                        <img src="" id="outputImage">
+                    </div>
+                    <div class="HStack innerTileRow">
+                        <button class="nButton" onclick="convertToImage()" type="button">Decode</button>
+                        <button class="nButton" onclick="downloadImage()" type="button" id="downloadImage">Download</button>
+                    </div>
+                </div>
+            </div>
+            <div class="ZStack">
+                <div class="toolTitle">Credential Encoder</div>
+                <div class="VStack innerTile">
+                    <div class="HStack innerTileRow"><p>Input:</p><p>Output:</p></div>
+                    <div class="HStack innerTileRow">
+                        <div class="VStack">
+                            <input id="in_username" name="username" placeholder="username"/>
+                            <input id="in_password" name="password" placeholder="password"/>
+                        </div>
+                        <textarea id="cred_output" readonly placeholder="Output" type="text"></textarea>
+                    </div>
+                    <div class="HStack innerTileRow">
+                        <button class="innerTileRowButton" onclick="encodeCred()" type="button">Encode</button>
+                        <button class="innerTileRowButton" onclick="copyContentOf('cred_output')" type="button" id="copyb64CredButton">Copy</button>
+                    </div>
+                </div>
+            </div>
+            <div class="ZStack">
+                <div class="toolTitle">Credential Decoder</div>
+                <div class="VStack innerTile">
+                    <div class="HStack innerTileRow"><p>Input:</p><p>Output:</p></div>
+                    <div class="HStack innerTileRow">
+                        <textarea id="cred_input" placeholder="Input" type="text"></textarea>
+                        <div class="VStack">
+                            <input id="out_username" name="username" placeholder="username"/>
+                            <input id="out_password" name="password" placeholder="password"/>
+                        </div>
+                    </div>
+                    <div class="HStack innerTileRow">
+                        <button class="innerTileRowButton" onclick="decodeCred()" type="button" id="">Decode</button>
+                        <button class="innerTileRowButton" onclick="copyContentOf('out_password')" type="button">Copy Password</button>
+                    </div>
+                </div>
             </div>
         </div>
+        <small>See the <a href="https://github.com/JayAgra/jayagra.com" target="_blank">code [↗]</a>.</small>
+        <small><a href="/legal/tos" target="_blank">ToS [↗]</a> <a href="/legal/privacy" target="_blank">Privacy [↗]</a></small>
+        <small>Copyright © 2024-2026 Jayen Agrawal. All rights reserved.</small>
         <script src="static/base64.min.js"></script>
     </body>
 </html>

@@ -11,85 +11,82 @@
         <link href="static/timestamp.min.css?v=120-10" rel="stylesheet"/>
         <meta content="#1e1e1f" name="theme-color"/>
     </head>
-    <body>
-        <div class="container endMargin">
-            <div class="VStack">
-                <h1 class="pageTitle">Timestamp Tools</h1>
-                <div class="itemGrid timestampGrid endMargin">
-                    <div class="ZStack">
-                        <div class="toolTitle">Timestamp Parser</div>
-                        <div class="VStack innerTile">
-                            <div class="VStack innerTileRow timestampUpper">
-                                <input type="tel" placeholder="Timestamp" id="timestampInput"/>
-                            </div>
-                            <div class="timestampLower">
-                                <span class="bold">UTC/GMT</span><span id="timestampOutGmt"></span>
-                                <span class="bold">Local</span><span id="timestampOutLocal"></span>
-                                <span class="bold">Relative</span><span id="timestampOutRelative"></span>
-                            </div>
-                        </div>
+    <body class="container endMargin VStack">
+        <h1 class="pageTitle">Timestamp Tools</h1>
+        <div class="itemGrid timestampGrid endMargin justifyCenter">
+            <div class="ZStack">
+                <div class="toolTitle">Timestamp Parser</div>
+                <div class="VStack innerTile">
+                    <div class="VStack innerTileRow timestampUpper">
+                        <input type="tel" placeholder="Timestamp" id="timestampInput"/>
                     </div>
-                    <div class="ZStack">
-                        <div class="toolTitle">Timestamp Maker</div>
-                        <div class="VStack innerTile">
-                            <div class="VStack innerTileRow timestampUpper">
-                                <input type="datetime-local" id="dateTimeInput" value="2026-01-01T00:00"/>
-                                <select id="timeZoneInput"><option value="-43200">UTC-12:00<option value="-39600">UTC-11:00<option value="-36000">UTC-10:00<option value="-32400">UTC-09:00<option value="-28800">UTC-08:00<option value="-25200">UTC-07:00<option value="-21600">UTC-06:00<option value="-18000">UTC-05:00<option value="-14400">UTC-04:00<option value="-10800">UTC-03:00<option value="-7200">UTC-02:00<option value="-3600">UTC-01:00<option value="0"selected>UTC+00:00<option value="3600">UTC+01:00<option value="7200">UTC+02:00<option value="10800">UTC+03:00<option value="14400">UTC+04:00<option value="18000">UTC+05:00<option value="21600">UTC+06:00<option value="25200">UTC+07:00<option value="28800">UTC+08:00<option value="32400">UTC+09:00<option value="36000">UTC+10:00<option value="39600">UTC+11:00<option value="43200">UTC+12:00</select>
-                            </div>
-                            <div class="timestampLower">
-                                <span id="timestampOutStamp" class="r2"></span><span class="bold r2">(ms)</span>
-                                <span id="timestampOutOtherStamp" class="r3"></span><span class="bold r3">(s)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ZStack">
-                        <div class="toolTitle">Offset Parser</div>
-                        <div class="VStack innerTile">
-                            <div class="HStack innerTileRow timestampUpper">
-                                <div class="fullHeight VStack textLeft">
-                                    <label for="offsetInput">Offset</label>
-                                    <label for="offsetInUnit">Unit</label>
-                                </div>
-                                <div class="fullHeight VStack">
-                                    <input type="tel" offsetInput="Offset" id="offsetInput"/>
-                                    <select name="offsetInUnit" id="offsetInUnit"><option value="s" selected>Unit: Seconds</option><option value="ms">Unit: Milliseconds</option></select>
-                                </div>
-                            </div>
-                            <div class="VStack timestampMargin">
-                                <span id="offsetOutString">3</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ZStack">
-                        <div class="toolTitle">Offset Maker</div>
-                        <div class="VStack innerTile">
-                            <div class="HStack innerTileRow timestampUpper">
-                                <div class="VStack textLeft fullHeight">
-                                    <label for="yearsInput">Years</label>
-                                    <label for="daysInput">Days</label>
-                                    <label for="hoursInput">Hours</label>
-                                    <label for="minutesInput">Minutes</label>
-                                    <label for="secondsInput">Seconds</label>
-                                </div>
-                                <div class="VStack fullHeight">
-                                    <input type="tel" name="yearsInput" id="yearsInput"/>
-                                    <input type="tel" name="daysInput" id="daysInput"/>
-                                    <input type="tel" name="hoursInput" id="hoursInput"/>
-                                    <input type="tel" name="minutesInput" id="minutesInput"/>
-                                    <input type="tel" name="secondsInput" id="secondsInput"/>
-                                </div>
-                            </div>
-                            <div class="timestampLower">
-                                <span id="offsetOutStamp" class="r2"></span><span class="bold r2">(ms)</span>
-                                <span id="offsetOutOtherStamp" class="r3"></span><span class="bold r3">(s)</span>
-                            </div>
-                        </div>
+                    <div class="timestampLower">
+                        <span class="bold">UTC/GMT</span><span id="timestampOutGmt"></span>
+                        <span class="bold">Local</span><span id="timestampOutLocal"></span>
+                        <span class="bold">Relative</span><span id="timestampOutRelative"></span>
                     </div>
                 </div>
-                <small>See the <a href="https://github.com/JayAgra/jayagra.com" target="_blank">code [↗]</a>.</small>
-                <small>Copyright © 2024-2026 Jayen Agrawal. All rights reserved.</small>
+            </div>
+            <div class="ZStack">
+                <div class="toolTitle">Timestamp Maker</div>
+                <div class="VStack innerTile">
+                    <div class="VStack innerTileRow timestampUpper">
+                        <input type="datetime-local" id="dateTimeInput" value="2026-01-01T00:00"/>
+                        <select id="timeZoneInput"><option value="-43200">UTC-12:00<option value="-39600">UTC-11:00<option value="-36000">UTC-10:00<option value="-32400">UTC-09:00<option value="-28800">UTC-08:00<option value="-25200">UTC-07:00<option value="-21600">UTC-06:00<option value="-18000">UTC-05:00<option value="-14400">UTC-04:00<option value="-10800">UTC-03:00<option value="-7200">UTC-02:00<option value="-3600">UTC-01:00<option value="0"selected>UTC+00:00<option value="3600">UTC+01:00<option value="7200">UTC+02:00<option value="10800">UTC+03:00<option value="14400">UTC+04:00<option value="18000">UTC+05:00<option value="21600">UTC+06:00<option value="25200">UTC+07:00<option value="28800">UTC+08:00<option value="32400">UTC+09:00<option value="36000">UTC+10:00<option value="39600">UTC+11:00<option value="43200">UTC+12:00</select>
+                    </div>
+                    <div class="timestampLower">
+                        <span id="timestampOutStamp" class="r2"></span><span class="bold r2">(ms)</span>
+                        <span id="timestampOutOtherStamp" class="r3"></span><span class="bold r3">(s)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="ZStack">
+                <div class="toolTitle">Offset Parser</div>
+                <div class="VStack innerTile">
+                    <div class="HStack innerTileRow timestampUpper">
+                        <div class="fullHeight VStack textLeft">
+                            <label for="offsetInput">Offset</label>
+                            <label for="offsetInUnit">Unit</label>
+                        </div>
+                        <div class="fullHeight VStack">
+                            <input type="tel" offsetInput="Offset" id="offsetInput"/>
+                            <select name="offsetInUnit" id="offsetInUnit"><option value="s" selected>Unit: Seconds</option><option value="ms">Unit: Milliseconds</option></select>
+                        </div>
+                    </div>
+                    <div class="VStack timestampMargin">
+                        <span id="offsetOutString">3</span>
+                    </div>
+                </div>
+            </div>
+            <div class="ZStack">
+                <div class="toolTitle">Offset Maker</div>
+                <div class="VStack innerTile">
+                    <div class="HStack innerTileRow timestampUpper">
+                        <div class="VStack textLeft fullHeight">
+                            <label for="yearsInput">Years</label>
+                            <label for="daysInput">Days</label>
+                            <label for="hoursInput">Hours</label>
+                            <label for="minutesInput">Minutes</label>
+                            <label for="secondsInput">Seconds</label>
+                        </div>
+                        <div class="VStack fullHeight">
+                            <input type="tel" name="yearsInput" id="yearsInput"/>
+                            <input type="tel" name="daysInput" id="daysInput"/>
+                            <input type="tel" name="hoursInput" id="hoursInput"/>
+                            <input type="tel" name="minutesInput" id="minutesInput"/>
+                            <input type="tel" name="secondsInput" id="secondsInput"/>
+                        </div>
+                    </div>
+                    <div class="timestampLower">
+                        <span id="offsetOutStamp" class="r2"></span><span class="bold r2">(ms)</span>
+                        <span id="offsetOutOtherStamp" class="r3"></span><span class="bold r3">(s)</span>
+                    </div>
+                </div>
             </div>
         </div>
+        <small>See the <a href="https://github.com/JayAgra/jayagra.com" target="_blank">code [↗]</a>.</small>
+        <small><a href="/legal/tos" target="_blank">ToS [↗]</a> <a href="/legal/privacy" target="_blank">Privacy [↗]</a></small>
+        <small>Copyright © 2024-2026 Jayen Agrawal. All rights reserved.</small>
         <script src="static/timestamp.min.js"></script>
     </body>
 </html>
