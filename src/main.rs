@@ -1,18 +1,38 @@
 use actix_files::NamedFile;
 use actix_governor::{Governor, GovernorConfigBuilder};
-use actix_web::{App, Error as ActixError, HttpRequest, HttpResponse, HttpServer, Result, error::{ErrorBadRequest, ErrorInternalServerError}, middleware::{self, DefaultHeaders}, web, mime};
+use actix_web::{App, Error as ActixError, HttpRequest, HttpResponse, HttpServer, Result, error::{ErrorBadRequest, ErrorInternalServerError}, middleware::{self, DefaultHeaders}, mime, web};
 use actix_web_static_files::ResourceFiles;
 use std::{env, io, path::PathBuf, str::FromStr};
 
 mod resources;
 mod gc;
 mod gc_interface;
+mod get_out;
 
 include!(concat!(env!("OUT_DIR"), "/generated.rs"));
 
-async fn static_ish(req: HttpRequest) -> Result<NamedFile> {
-    let path: PathBuf = ("static-ish/".to_owned() + req.match_info().query("filename")).parse::<PathBuf>().unwrap();
-    Ok(NamedFile::open(path)?)
+fn sanitize(input: &str) -> String {
+    input
+        .chars()
+        .filter(|c| c.is_ascii_alphanumeric() || *c == '.')
+        .collect()
+}
+
+async fn static_ish(req: HttpRequest) -> HttpResponse {
+    let requested_file: &String = &sanitize(req.match_info().query("filename"));
+
+    let lowercased_file: &String = &requested_file.to_ascii_lowercase();
+    
+    if get_out::SUSPICIOUS.iter().any(|p: &&str| lowercased_file.contains(p)) {
+        return HttpResponse::Unauthorized().body("fuck you")
+    }
+
+    let path: PathBuf = ("static-ish/".to_owned() + requested_file).parse::<PathBuf>().unwrap();
+
+    match NamedFile::open(&path) {
+        Ok(file) => file.into_response(&req),
+        Err(_) => resources::static_not_found().await
+    }
 }
 
 async fn get_public_key(req: HttpRequest) -> Result<HttpResponse, ActixError> {
@@ -151,6 +171,7 @@ async fn main() -> io::Result<()> {
             // other shit
             .route("/static-ish/{filename}", web::get().to(static_ish))
             .route("/keys/{key_type}/{id}", web::get().to(get_public_key))
+            .default_service(web::to(get_out::is_suspicious))
     })
     .bind("0.0.0.0:8080")?
     .workers(8)
