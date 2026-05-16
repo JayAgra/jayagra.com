@@ -1,3 +1,8 @@
+:root {
+    --employerLogoLufthansaFg: #fff;
+    --employerLogoLufthansaBg: #05164d;
+}
+
 .aboutContainer {
     text-align: left;
 }
@@ -85,6 +90,22 @@
     width: 5rem;
     margin-right: 1rem;
     clip-path: circle(50%);
+}
+
+.lufthansaLogo {
+    background-color: var(--employerLogoLufthansaFg);
+}
+
+.lufthansaLogo::after {
+    content: "";
+    width: 5rem;
+    height: 5rem;
+    position: absolute;
+    background-color: var(--employerLogoLufthansaBg);
+    mask-image: url("./lufthansa.svg");
+    mask-size: 4rem;
+    mask-position: center;
+    mask-repeat: no-repeat;
 }
 
 .scrollFooter {

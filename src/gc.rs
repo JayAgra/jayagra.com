@@ -64,8 +64,14 @@ pub fn vincenty(mut points: [Coordinate; 2]) -> (f64, f64, f64) {
         iter_limit -= 1;
 
         // components of the angular separation (σ)
-        sin_sigma = ((cos_u2 * lambda.sin()).powi(2) + (cos_u1 * sin_u2 - sin_u1 * cos_u2 * lambda.cos()).powi(2)).sqrt(); // sin(σ)
-        cos_sigma = sin_u1 * sin_u2 + cos_u1 * cos_u2 * lambda.cos(); // cos(σ)
+        sin_sigma = 
+            ((cos_u2 * lambda.sin()).powi(2) + 
+            (cos_u1 * sin_u2 - sin_u1 * cos_u2 * lambda.cos()).powi(2)).sqrt(); // sin(σ)
+
+        cos_sigma = 
+            sin_u1 * sin_u2 + 
+            cos_u1 * cos_u2 * lambda.cos(); // cos(σ)
+
         sigma = sin_sigma.atan2(cos_sigma); // angular separation (σ)
 
         // azimuthal angle (α) of the geodesic
@@ -73,13 +79,26 @@ pub fn vincenty(mut points: [Coordinate; 2]) -> (f64, f64, f64) {
         cos2_alpha = 1.0 - sin_alpha.powi(2); // cos²(α)
 
         // correction for σm (corrected angular separation)
-        cos2_sigma_m = cos_sigma - 2.0 * sin_u1 * sin_u2 / cos2_alpha; // cos(σm)
+        cos2_sigma_m = 
+            cos_sigma - 
+            2.0 * sin_u1 * sin_u2 / cos2_alpha; // cos(σm)
         // correction factor
         let correction: f64 = FLATTENING / 16.0 * cos2_alpha * (4.0 + FLATTENING * (4.0 - 3.0 * cos2_alpha));
 
         // recalculate longitude difference (λ) for the next iter
         lambda_prev = lambda;
-        lambda = delta_lon + (1.0 - correction) * FLATTENING * sin_alpha * (sigma + correction * sin_sigma * (cos2_sigma_m + correction * cos_sigma * (-1.0 + 2.0 * cos2_sigma_m.powi(2))));
+        lambda = 
+            delta_lon +
+            (1.0 - correction) * FLATTENING * sin_alpha * (
+                sigma + 
+                correction * sin_sigma * (
+                    cos2_sigma_m +
+                    correction * cos_sigma * (
+                        -1.0 +
+                        2.0 * cos2_sigma_m.powi(2)
+                    )
+                )
+            );
     }
 
     if iter_limit == 0 {
@@ -88,19 +107,65 @@ pub fn vincenty(mut points: [Coordinate; 2]) -> (f64, f64, f64) {
     }
 
     // compute distance
-    let u2: f64 = cos2_alpha * (SEMI_MAJOR_AXIS.powi(2) - SEMI_MINOR_AXIS.powi(2)) / SEMI_MINOR_AXIS.powi(2); // (cos(α))^2 * ((a^2)-(b^2))/(b^2)
-    let a_coeff: f64 = 1.0 + (u2 / 16384.0) * (4096.0 + u2 * (-768.0 + u2 * (320.0 - 175.0 * u2))); // 
-    let b_coeff: f64 = (u2 / 1024.0) * (256.0 + u2 * (-128.0 + u2 * (74.0 - 47.0 * u2)));
+    let u2: f64 = // (cos(α))^2 * ((a^2)-(b^2))/(b^2)
+        cos2_alpha *
+        (SEMI_MAJOR_AXIS.powi(2) - SEMI_MINOR_AXIS.powi(2)) / SEMI_MINOR_AXIS.powi(2);
+        
+    let a_coeff: f64 =
+        1.0 + 
+        (u2 / 16384.0) * (
+            4096.0 +
+            u2 * (
+                -768.0 +
+                u2 * (
+                    320.0 -
+                    175.0 * u2
+                )
+            )
+        );
+
+    let b_coeff: f64 =
+        (u2 / 1024.0) * (256.0 +
+            u2 * (
+                -128.0 +
+                u2 * (
+                    74.0 -
+                    47.0 * u2
+                )
+            )
+        );
 
     // correction term in distance formula (Δσ)
-    let delta_sigma: f64 = b_coeff * sin_sigma * 
-        (cos2_sigma_m + (b_coeff / 4.0) * (cos_sigma * (-1.0 + 2.0 * cos2_sigma_m.powi(2)) - (b_coeff / 6.0)  * cos2_sigma_m * (-3.0 + 4.0 * sin_sigma.powi(2)) * (-3.0 + 4.0 * cos2_sigma_m.powi(2))));
+    let delta_sigma: f64 = 
+        b_coeff * sin_sigma * (
+            cos2_sigma_m +
+            (b_coeff / 4.0) * (
+                cos_sigma * (
+                    -1.0 +
+                    2.0 * cos2_sigma_m.powi(2)
+                ) - (
+                    b_coeff / 6.0
+                ) *
+                cos2_sigma_m *
+                (-3.0 + 4.0 * sin_sigma.powi(2)) *
+                (-3.0 + 4.0 * cos2_sigma_m.powi(2))
+            )
+        );
 
     let distance: f64 = SEMI_MINOR_AXIS * a_coeff * (sigma - delta_sigma); // s
 
     // azimuths α1 and α2
-    let mut alpha1: f64 = (cos_u2 * lambda.sin()).atan2((cos_u1 * sin_u2) - (sin_u1 * cos_u2 * lambda.cos())).to_degrees();
-    let mut alpha2: f64 = (cos_u1 * lambda.sin()).atan2((-1.0 * sin_u1 * cos_u2) + (cos_u1 * sin_u2 * lambda.cos())).to_degrees();
+    let mut alpha1: f64 = 
+        (cos_u2 * lambda.sin()).atan2(
+            (cos_u1 * sin_u2) - 
+            (sin_u1 * cos_u2 * lambda.cos())
+        ).to_degrees();
+
+    let mut alpha2: f64 =
+        (cos_u1 * lambda.sin()).atan2(
+            (-1.0 * sin_u1 * cos_u2) +
+            (cos_u1 * sin_u2 * lambda.cos())
+        ).to_degrees();
 
     // normalize azimuths to [0, 360]
     if alpha1 < 0.0 { alpha1 += 360.0 }
