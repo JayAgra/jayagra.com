@@ -1,6 +1,7 @@
 :root {
     --employerLogoLufthansaFg: #fff;
     --employerLogoLufthansaBg: #05164d;
+    /* --employerLogoLufthansaFa: #ffaD00; */
 }
 
 .aboutContainer {
@@ -93,20 +94,33 @@
 }
 
 .lufthansaLogo {
-    background-color: var(--employerLogoLufthansaFg);
+    background-color: var(--employerLogoLufthansaBg);
+    transition: all ease-out 0.5s;
 }
+
+/* .lufthansaLogo:hover {
+    background-color: var(--employerLogoLufthansaFa);
+    transition: all ease-out 0.5s;
+} */
 
 .lufthansaLogo::after {
     content: "";
     width: 5rem;
     height: 5rem;
     position: absolute;
-    background-color: var(--employerLogoLufthansaBg);
+    background-color: var(--employerLogoLufthansaFg);
     mask-image: url("./lufthansa.svg");
     mask-size: 4rem;
     mask-position: center;
     mask-repeat: no-repeat;
+    transition: all ease-out 0.5s;
 }
+
+/* .lufthansaLogo:hover::after {
+    background-color: var(--employerLogoLufthansaBg);
+    mask-size: 4.125rem;
+    transition: all ease-out 0.5s;
+} */
 
 .scrollFooter {
     position: relative;

@@ -14,7 +14,8 @@
 
 @media (orientation: portrait) {
     .base64Grid {
-        grid-template-columns: repeat(1, 90vw);
+        display: flex;
+        flex-direction: column;
     }
 
     .base64Grid > .ZStack {

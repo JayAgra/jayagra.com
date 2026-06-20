@@ -42,7 +42,8 @@
 
 @media (orientation: portrait) {
     .projectGrid {
-        grid-template-columns: repeat(1, 90vw);
+        display: flex;
+        flex-direction: column;
     }
 
     .projectGrid > .ZStack {
@@ -100,7 +101,8 @@
 
     @media (max-width: 950px) {
         .projectGrid {
-            grid-template-columns: repeat(1, 90vw);
+            display: flex;
+            flex-direction: column;
         }
 
         .projectGrid > .ZStack {

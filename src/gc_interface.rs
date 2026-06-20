@@ -11,6 +11,11 @@ pub struct GreatCircleData {
     pub azimuth_b: f64
 }
 
+pub struct AirportGc {
+    pub origin: String,
+    pub destination: String
+}
+
 pub async fn great_circle_post(data: web::Json<[gc::Coordinate; 2]>) -> Result<HttpResponse, ActixError> {
     for coordinate in &data.0 {
         if coordinate.latitude.abs() > 90.0 || coordinate.longitude.abs() > 180.0 {

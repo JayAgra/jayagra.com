@@ -1,8 +1,8 @@
 .timestampGrid {
     column-gap: 10px;
+    -webkit-column-gap: 10px;
     row-gap: 15px;
     grid-template-columns: repeat(2, 45vw);
-    -webkit-column-gap: 10px;
     grid-auto-flow: dense;
 }
 
@@ -75,7 +75,8 @@
 
 @media (orientation: portrait) {
     .timestampGrid {
-        grid-template-columns: repeat(1, 90vw);
+        display: flex;
+        flex-direction: column;
     }
 
     .itemTitleContainer {
