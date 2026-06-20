@@ -1,15 +1,14 @@
-.darkLink, .darkLink:visited {
+.navMenuContent > a, .navMenuContent > a:visited {
     color: var(--backgroundColor);
-    text-decoration: dashed underline;
+    text-decoration: underline dotted;
 }
 
-.darkLink:hover {
-    color: color-mix(in srgb, var(--backgroundColor) 70%, var(--textColorPrimary) 30%);
+.navMenuContent > a:hover, .navMenuContent > a:focus {
+    color: color-mix(in srgb, var(--backgroundColor) 80%, var(--textColorPrimary) 20%);
 }
 
-.darkLink:active {
-    color: color-mix(in srgb, var(--backgroundColor) 30%, var(--textColorPrimary) 70%);
-    text-decoration: solid underline;
+.navMenuContent > a:active {
+    color: color-mix(in srgb, var(--backgroundColor) 60%, var(--textColorPrimary) 40%);
 }
 
 .navCheck {
@@ -26,14 +25,13 @@
     bottom: 1rem;
     z-index: 3;
     transform: translateZ(3);
-    background-color: #fbf1c7dd;
+    background-color: #458588ee;
     width: 2rem;
     height: 2rem;
     padding: 1rem;
     border-radius: 15px;
     transition: ease-in all 0.15s;
-    box-shadow: 0px 0px 0.25rem var(--uiElementPrimary);
-    backdrop-filter: blur(0.25rem);
+    backdrop-filter: blur(0.1rem);
 }
 
 .bottomToolbar > img:first-of-type {
@@ -64,13 +62,10 @@
     z-index: 2;
     transform: translateZ(2);
     text-align: left;
-    color: var(--backgroundColor);
-    background-color: #fbf1c7cc;
+    background-color: color-mix(in srgb, #83a598 50%, #458588 50%);
     border-radius: 15px;
     border-bottom-right-radius: 2rem;
     transition: ease-in all 0.15s;
-    box-shadow: 0px 0px 0.25rem var(--textColorPrimary);
-    backdrop-filter: blur(0.25rem);
 }
 
 .navCheck:checked + div > .bottomToolbar {

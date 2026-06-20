@@ -1,3 +1,18 @@
+.darkLink, .darkLink:visited {
+    color: var(--backgroundColor);
+    text-decoration: dashed underline;
+}
+
+.darkLink:hover, .darkLink:focus {
+    color: color-mix(in srgb, var(--backgroundColor) 80%, var(--textColorPrimary) 20%);
+    text-decoration: underline dashed;
+}
+
+.darkLink:active {
+    color: color-mix(in srgb, var(--backgroundColor) 60%, var(--textColorPrimary) 40%);
+    text-decoration: underline wavy;
+}
+
 .projectGrid {
     column-gap: 10px;
     row-gap: 15px;

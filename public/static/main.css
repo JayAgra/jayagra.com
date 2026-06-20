@@ -63,12 +63,12 @@ a, a:visited {
 }
 
 a:focus, a:hover {
-    color: color-mix(in srgb, var(--linkColor) 25%, var(--textColorPrimary) 75%);
+    color: #8ec07c;
     text-decoration: underline dashed;
 }
 
 a:active {
-    color: color-mix(in srgb, var(--linkColor) 75%, var(--textColorPrimary) 25%);
+    color: #689d6a;
     text-decoration: underline wavy;
 }
 
@@ -76,6 +76,7 @@ a:active {
     position: absolute;
     bottom: 1rem;
     font-size: 0.65rem;
+    color: #d5c4a1;
 }
 
 @media (max-height: 400px) {
