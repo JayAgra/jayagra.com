@@ -76,9 +76,17 @@
     text-align: right;
 }
 
-.employmentItem > div > div:first-of-type > span {
+.employmentItem > div > div:first-of-type > span:first-of-type {
     font-weight: 600;
     font-size: larger;
+}
+
+.employmentItem > div > div:first-of-type > span:last-of-type {
+    align-self: flex-end;
+}
+
+.employmentItem > div > div:nth-of-type(2) > span:first-of-type {
+    font-weight: 500;
 }
 
 .employmentItem > div > div:first-of-type + div {
